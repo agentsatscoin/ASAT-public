@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background: #050816;
+  color: #F4F6F8;
+  letter-spacing: -0.01em;
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn-primary,
+.btn-primary-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: 1px solid #F4F1EA;
+  border-radius: 2px;
+  background: #F4F1EA;
+  color: #050816;
+  font-weight: 600;
+  transition: opacity .15s ease, transform .15s ease, border-color .15s ease;
+}
+
+.btn-primary:hover,
+.btn-primary-hero:hover {
+  opacity: .94;
+}
+
+.btn-secondary,
+.btn-secondary-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 2px;
+  background: transparent;
+  color: #F4F6F8;
+  font-weight: 600;
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.btn-secondary:hover,
+.btn-secondary-hero:hover {
+  border-color: rgba(17,214,255,.45);
+  background: rgba(17,214,255,.06);
+}
+
+.gradient-text,
+.gradient-text-strong {
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  color: #F4F6F8;
+}
+
+.card,
+.protocol-panel,
+.protocol-console,
+.protocol-grid,
+.protocol-stat,
+.card-premium,
+.mining-console,
+.proof-block,
+.agent-badge {
+  border-radius: 2px !important;
+  border: 1px solid rgba(255,255,255,.10);
+  background: #060B14;
+  box-shadow: none !important;
+}
+
+.protocol-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.protocol-kicker {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8FA3BC;
+}
+
+.section-title {
+  letter-spacing: -0.04em;
+}
+
+.protocol-grid-bg {
+  background-image:
+    linear-gradient(rgba(140,235,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140,235,255,0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@keyframes protocolPulse {
+  0%, 100% { opacity: .55; box-shadow: 0 0 0 rgba(17,214,255,0); }
+  50% { opacity: 1; box-shadow: 0 0 10px rgba(17,214,255,.22); }
+}
+
+.protocol-status-live { animation: protocolPulse 1.2s ease-in-out infinite; }
+.protocol-status-idle { animation: protocolPulse 2.2s ease-in-out infinite; }
+
+.asat-glyph,
+.asat-glyph-lg {
+  border-radius: 2px;
+  background: #0B1220;
+  color: #F4F1EA;
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: none;
+}
