@@ -316,9 +316,7 @@ function TierBadge({ balance }: { balance: number }) {
         : 'border-white/10 bg-white/[0.03] text-[#D7E0EA]';
 
   return (
-    <span
-      className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}
-    >
+    <span className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}>
       {tierLabelFromBalance(balance)}
     </span>
   );
@@ -723,7 +721,6 @@ export function AsatAgentRegistry() {
         </div>
 
         <div className="mt-8 border border-white/10 bg-[#06101D]/90 p-5 sm:p-6">
-          {/* connect / already-registered / register flow - unchanged but now inside compact layout */}
           {!connected ? (
             <div>
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">Step 1</div>
@@ -752,7 +749,6 @@ export function AsatAgentRegistry() {
             </div>
           ) : existingAgent ? (
             <div>
-              {/* already registered UI - compact */}
               <div className="border border-[#C8B08A]/20 bg-[#C8B08A]/[0.06] p-4">
                 <div className="text-[11px] uppercase tracking-[0.25em] text-[#D5C3A0]">
                   Wallet status
@@ -815,7 +811,6 @@ export function AsatAgentRegistry() {
             </div>
           ) : (
             <div>
-              {/* registration flow */}
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">Step 2</div>
               <h3 className="mt-4 text-2xl font-semibold text-white">Complete Registration</h3>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#B6C4D5]">
