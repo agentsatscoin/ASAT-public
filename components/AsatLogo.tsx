@@ -42,10 +42,10 @@ export function AsatLogo({
   const showSubtitle = size !== 'sm';
 
   return (
-    <div className={cn('inline-flex items-center', current.gap, className)}>
+    <div className={cn('flex items-center', current.gap, className)}>
       <div
         className={cn(
-          'inline-flex shrink-0 items-center justify-center border border-white/20 bg-[#081326] text-white',
+          'flex shrink-0 items-center justify-center border border-white/20 bg-[#081326] text-white',
           current.mark,
           markClassName
         )}

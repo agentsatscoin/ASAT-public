@@ -13,11 +13,11 @@ export function Footer() {
   return (
     <footer className="bg-[#07111F]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 border-b border-white/10 pb-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+        <div className="grid gap-10 border-b border-white/10 pb-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <div className="min-w-0">
-            <AsatLogo size="md" />
+            <AsatLogo size="md" className="w-fit" />
 
-            <p className="mt-5 max-w-xl text-base leading-8 text-[#C8D2DF]">
+            <p className="mt-6 max-w-xl text-base leading-8 text-[#C8D2DF]">
               Neutral reserve unit for autonomous machine work and settlement.
             </p>
 
@@ -46,6 +46,14 @@ export function Footer() {
                 className="text-[#C8D2DF] transition hover:text-white"
               >
                 Telegram / @ASATcoin
+              </a>
+              <a
+                href="https://github.com/agentsatscoin/ASAT-public"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#C8D2DF] transition hover:text-white"
+              >
+                GitHub / ASAT-public
               </a>
               <a
                 href={`https://solscan.io/token/${ASAT_MINT}`}
