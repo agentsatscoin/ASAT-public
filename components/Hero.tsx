@@ -12,7 +12,7 @@ export function Hero() {
 
   return (
     <section id="top" className="overflow-hidden border-b border-white/10 bg-[#050816]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-center lg:gap-12 lg:px-8 lg:py-20">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center lg:gap-12 lg:px-8 lg:py-20">
         <div className="min-w-0">
           <div className="inline-flex items-center gap-3 border border-white/10 bg-[#081326] px-4 py-3 text-[11px] uppercase tracking-[0.28em] text-[#C9D3E0]">
             <span className="flex h-5 w-5 items-center justify-center border border-white/20 text-[11px] font-semibold text-white">
@@ -39,37 +39,34 @@ export function Hero() {
               View Live Registry
             </button>
 
-            <button
-              type="button"
-              onClick={scrollToRegistry}
+            <a
+              href="#registry"
               className="inline-flex items-center justify-center border border-white/10 bg-transparent px-6 py-4 text-sm font-semibold text-white transition hover:border-[#8CEBFF]/40 hover:bg-[#8CEBFF]/[0.04]"
             >
               Register Wallet
-            </button>
+            </a>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
             <div className="border border-white/10 bg-[#081326] px-4 py-4">
               <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Chain</div>
               <div className="mt-2 text-lg font-semibold text-white">Solana</div>
             </div>
+
             <div className="border border-white/10 bg-[#081326] px-4 py-4">
               <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Registry</div>
               <div className="mt-2 text-lg font-semibold text-white">Live</div>
             </div>
+
             <div className="border border-white/10 bg-[#081326] px-4 py-4">
               <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Contract</div>
               <div className="mt-2 text-lg font-semibold text-white">Verified</div>
             </div>
-            <div className="border border-white/10 bg-[#081326] px-4 py-4">
-              <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Channels</div>
-              <div className="mt-2 text-lg font-semibold text-white">Official</div>
-            </div>
           </div>
         </div>
 
-        <div className="min-w-0">
-          <div className="mx-auto w-full max-w-[420px] border border-white/10 bg-[#081326] p-5 sm:p-6">
+        <div className="hidden min-w-0 lg:block">
+          <div className="mx-auto w-full max-w-[380px] border border-white/10 bg-[#081326] p-6">
             <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div className="text-[11px] uppercase tracking-[0.28em] text-[#D7E0EA]">
                 Protocol Surface
@@ -108,3 +105,5 @@ export function Hero() {
     </section>
   );
 }
+
+export default Hero;

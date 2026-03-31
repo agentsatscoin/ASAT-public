@@ -32,7 +32,7 @@ const phases = [
 export default function Roadmap() {
   return (
     <section id="roadmap" className="border-b border-white/10 bg-[#07111F]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-[11px] uppercase tracking-[0.28em] text-[#8FA3BC]">
             Protocol Roadmap / 2026+
@@ -74,9 +74,7 @@ export default function Roadmap() {
 
               <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
                 <span
-                  className={`h-2.5 w-2.5 ${
-                    item.live ? 'bg-emerald-300' : 'bg-[#6C84B4]'
-                  }`}
+                  className={`h-2.5 w-2.5 ${item.live ? 'bg-emerald-300' : 'bg-[#6C84B4]'}`}
                 />
                 <span className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">
                   {item.live ? 'Active now' : 'Planned'}

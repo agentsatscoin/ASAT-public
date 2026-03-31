@@ -65,7 +65,7 @@ function LinkCard({
 export default function OfficialLinks() {
   return (
     <section id="official-links" className="border-y border-white/10 bg-[#050816]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-[11px] uppercase tracking-[0.28em] text-[#8FA3BC]">
             Official Surface

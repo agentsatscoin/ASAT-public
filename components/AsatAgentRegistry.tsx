@@ -316,15 +316,13 @@ function TierBadge({ balance }: { balance: number }) {
         : 'border-white/10 bg-white/[0.03] text-[#D7E0EA]';
 
   return (
-    <span
-      className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}
-    >
+    <span className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}>
       {tierLabelFromBalance(balance)}
     </span>
   );
 }
 
-function MetricCard({ label, value }: { label: string; value: string }) {
+function StatCard({ label, value }: { label: string; value: string }) {
   return (
     <div className="border border-white/10 bg-[#081326] p-4">
       <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">{label}</div>
@@ -339,7 +337,9 @@ function EntryCard({ agent }: { agent: Agent }) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Wallet</div>
-          <div className="mt-2 break-all font-mono text-sm text-white">{agent.wallet_address}</div>
+          <div className="mt-2 break-all font-mono text-sm text-white" title={agent.wallet_address}>
+            {shortWallet(agent.wallet_address)}
+          </div>
         </div>
         <TierBadge balance={agent.asat_balance} />
       </div>
@@ -414,15 +414,6 @@ export function AsatAgentRegistry() {
       { label: 'Reward Queue', value: String(stats.byRewardStatus.pending) },
     ];
   }, [agents, stats]);
-
-  const tierItems = useMemo(
-    () => [
-      { label: 'Starter', value: String(stats.byTier.starter) },
-      { label: 'Standard', value: String(stats.byTier.standard) },
-      { label: 'Premium', value: String(stats.byTier.premium) },
-    ],
-    [stats]
-  );
 
   const resetWalletState = () => {
     setConnected(false);
@@ -685,7 +676,7 @@ export function AsatAgentRegistry() {
 
   return (
     <section id="registry" className="border-b border-white/10 bg-[#07111F]">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         {showSuccessToast ? (
           <div className="fixed left-1/2 top-4 z-50 w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2 border border-[#8CEBFF]/25 bg-[#081326] px-4 py-3 text-center text-sm text-[#DFF8FF]">
             Registry entry confirmed
@@ -705,16 +696,22 @@ export function AsatAgentRegistry() {
           </p>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {statusItems.map((item) => (
-            <MetricCard key={item.label} label={item.label} value={item.value} />
+            <StatCard key={item.label} label={item.label} value={item.value} />
           ))}
         </div>
 
-        <div className="mt-4 grid gap-4 sm:grid-cols-3">
-          {tierItems.map((item) => (
-            <MetricCard key={item.label} label={item.label} value={item.value} />
-          ))}
+        <div className="mt-4 flex flex-wrap gap-3">
+          <span className="inline-flex items-center border border-white/10 bg-[#081326] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#D7E0EA]">
+            Starter: {stats.byTier.starter}
+          </span>
+          <span className="inline-flex items-center border border-white/10 bg-[#081326] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#8CEBFF]">
+            Standard: {stats.byTier.standard}
+          </span>
+          <span className="inline-flex items-center border border-white/10 bg-[#081326] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#E8D8B8]">
+            Premium: {stats.byTier.premium}
+          </span>
         </div>
 
         <div className="mt-8 border border-white/10 bg-[#06101D]/90 p-5 sm:p-6">
@@ -773,18 +770,18 @@ export function AsatAgentRegistry() {
                 </div>
               ) : null}
 
-              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
                 <div className="border border-white/10 bg-[#081326] p-4 sm:col-span-2 xl:col-span-3">
                   <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Wallet</div>
                   <div className="mt-3 break-all font-mono text-sm text-white">{walletAddress}</div>
                 </div>
 
-                <MetricCard label="Verified Balance" value={formatAsat(visibleBalance)} />
-                <MetricCard label="Tier" value={visibleTierLabel} />
-                <MetricCard label="Role" value={roleLabel(existingAgent.role)} />
-                <MetricCard label="Registered" value={formatDate(existingAgent.created_at)} />
-                <MetricCard label="X Handle" value={existingAgent.x_handle || '—'} />
-                <MetricCard label="Reward Status" value={rewardLabel(existingAgent.reward_status)} />
+                <StatCard label="Verified Balance" value={formatAsat(visibleBalance)} />
+                <StatCard label="Tier" value={visibleTierLabel} />
+                <StatCard label="Role" value={roleLabel(existingAgent.role)} />
+                <StatCard label="Registered" value={formatDate(existingAgent.created_at)} />
+                <StatCard label="X Handle" value={existingAgent.x_handle || '—'} />
+                <StatCard label="Reward Status" value={rewardLabel(existingAgent.reward_status)} />
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -829,13 +826,13 @@ export function AsatAgentRegistry() {
                 </div>
               ) : null}
 
-              <div className="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                <div className="border border-white/10 bg-[#081326] p-4 sm:col-span-2 xl:col-span-3">
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="border border-white/10 bg-[#081326] p-4 sm:col-span-2">
                   <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Wallet</div>
                   <div className="mt-3 break-all font-mono text-sm text-white">{walletAddress}</div>
                 </div>
 
-                <MetricCard
+                <StatCard
                   label="ASAT Balance"
                   value={
                     balanceLoading
@@ -845,14 +842,15 @@ export function AsatAgentRegistry() {
                         : 'Unverified'
                   }
                 />
-                <MetricCard label="Tier" value={visibleTierLabel} />
+                <StatCard label="Tier" value={visibleTierLabel} />
               </div>
 
               <div className="mt-6">
                 <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">
                   Choose Your Role
                 </div>
-                <div className="mt-4 grid gap-4 sm:grid-cols-2">
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {ROLE_OPTIONS.map((role) => {
                     const active = selectedRole === role.id;
 
@@ -966,3 +964,5 @@ export function AsatAgentRegistry() {
     </section>
   );
 }
+
+export default AsatAgentRegistry;

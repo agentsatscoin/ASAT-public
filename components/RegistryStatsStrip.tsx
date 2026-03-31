@@ -9,7 +9,7 @@ type Stats = {
     standard: number;
     premium: number;
   };
-  lastRegistration: string | null;
+  lastRegistration?: string | null;
 };
 
 const EMPTY_STATS: Stats = {
@@ -27,14 +27,6 @@ function toNumber(value: unknown): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
-async function safeJson(response: Response): Promise<any | null> {
-  try {
-    return await response.json();
-  } catch {
-    return null;
-  }
-}
-
 function normalizeStats(input: any): Stats {
   const byTier = input?.byTier ?? input?.tiers ?? {};
 
@@ -45,101 +37,89 @@ function normalizeStats(input: any): Stats {
       standard: toNumber(byTier?.standard),
       premium: toNumber(byTier?.premium),
     },
-    lastRegistration:
-      typeof input?.lastRegistration === 'string' ? input.lastRegistration : null,
+    lastRegistration: typeof input?.lastRegistration === 'string' ? input.lastRegistration : null,
   };
 }
 
-function formatLastRegistration(value: string | null) {
+async function safeJson<T = any>(response: Response): Promise<T | null> {
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
+}
+
+function formatLastRegistration(value: string | null | undefined): string {
   if (!value) return '—';
+  const ts = new Date(value).getTime();
+  if (Number.isNaN(ts)) return '—';
 
-  const regTime = new Date(value);
-  if (Number.isNaN(regTime.getTime())) return '—';
+  const diffMs = Date.now() - ts;
+  const diffMin = Math.max(1, Math.floor(diffMs / 60000));
 
-  const now = new Date();
-  const diffMs = now.getTime() - regTime.getTime();
-  const diffMins = Math.floor(diffMs / 60000);
+  if (diffMin < 60) return `${diffMin}m ago`;
 
-  if (diffMins < 1) return 'just now';
-  if (diffMins < 60) return `${diffMins}m ago`;
-  if (diffMins < 1440) return `${Math.floor(diffMins / 60)}h ago`;
-  return `${Math.floor(diffMins / 1440)}d ago`;
+  const diffHr = Math.floor(diffMin / 60);
+  if (diffHr < 24) return `${diffHr}h ago`;
+
+  const diffDay = Math.floor(diffHr / 24);
+  return `${diffDay}d ago`;
 }
 
 export function RegistryStatsStrip() {
   const [stats, setStats] = useState<Stats>(EMPTY_STATS);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    let mounted = true;
+
+    const load = async () => {
       try {
         const res = await fetch('/api/stats', { cache: 'no-store' });
         const data = await safeJson(res);
-        setStats(normalizeStats(data));
-      } catch (err) {
-        console.error('Failed to fetch stats:', err);
-        setStats(EMPTY_STATS);
-      } finally {
-        setLoading(false);
+        if (mounted) setStats(normalizeStats(data));
+      } catch {
+        if (mounted) setStats(EMPTY_STATS);
       }
     };
 
-    void fetchStats();
-    const interval = setInterval(() => {
-      void fetchStats();
-    }, 10000);
+    void load();
+    const interval = setInterval(load, 10000);
 
-    return () => clearInterval(interval);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
   }, []);
 
-  if (loading && stats.total === 0) return null;
-
-  const lastReg = formatLastRegistration(stats.lastRegistration);
+  const items = [
+    { label: 'Registered Agents', value: String(stats.total) },
+    { label: 'Starter', value: String(stats.byTier.starter) },
+    { label: 'Standard', value: String(stats.byTier.standard) },
+    { label: 'Premium', value: String(stats.byTier.premium) },
+    { label: 'Last Registration', value: formatLastRegistration(stats.lastRegistration) },
+  ];
 
   return (
-    <div className="border-y border-white/10 bg-[#081326]/75 px-4 py-3 backdrop-blur sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
-        <div className="flex flex-wrap justify-center gap-5 text-sm sm:gap-8">
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Registered Agents:</span>
-            <span className="ml-2 font-semibold text-[#F4F6F8]">{stats.total}</span>
-          </div>
-
-          <div className="hidden w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Starter:</span>
-            <span className="ml-2 font-semibold text-[#D7E0EA]">
-              {stats.byTier.starter}
-            </span>
-          </div>
-
-          <div className="hidden w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Standard:</span>
-            <span className="ml-2 font-semibold text-[#8CEBFF]">
-              {stats.byTier.standard}
-            </span>
-          </div>
-
-          <div className="hidden w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Premium:</span>
-            <span className="ml-2 font-semibold text-[#C8B08A]">
-              {stats.byTier.premium}
-            </span>
-          </div>
-
-          <div className="hidden w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Last registration:</span>
-            <span className="ml-2 font-semibold text-[#F4F6F8]">{lastReg}</span>
-          </div>
+    <section className="border-b border-white/10 bg-[#081326]">
+      <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+          {items.map((item, index) => (
+            <div
+              key={item.label}
+              className={`border border-white/10 bg-[#06101D]/80 px-4 py-3 ${
+                index === items.length - 1 ? 'col-span-2 md:col-span-1' : ''
+              }`}
+            >
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#8FA3BC]">
+                {item.label}
+              </div>
+              <div className="mt-2 text-base font-semibold text-white">{item.value}</div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
+
+export default RegistryStatsStrip;

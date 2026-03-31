@@ -1,12 +1,12 @@
-interface AsatLogoProps {
+type AsatLogoProps = {
   className?: string;
   markClassName?: string;
   wordmarkClassName?: string;
   size?: 'sm' | 'md' | 'lg';
   showWordmark?: boolean;
-}
+};
 
-function joinClasses(...classes: Array<string | undefined | false>) {
+function cn(...classes: Array<string | undefined | null | false>) {
   return classes.filter(Boolean).join(' ');
 }
 
@@ -19,57 +19,60 @@ export function AsatLogo({
 }: AsatLogoProps) {
   const sizes = {
     sm: {
-      mark: 'h-8 w-8',
-      wordmark: 'text-xl tracking-[0.16em]',
+      mark: 'h-7 w-7 text-[13px]',
+      title: 'text-[13px] tracking-[0.18em]',
+      subtitle: 'text-[8px] tracking-[0.26em]',
+      gap: 'gap-2.5',
     },
     md: {
-      mark: 'h-10 w-10',
-      wordmark: 'text-2xl tracking-[0.18em]',
+      mark: 'h-9 w-9 text-[16px]',
+      title: 'text-lg tracking-[0.18em]',
+      subtitle: 'text-[10px] tracking-[0.28em]',
+      gap: 'gap-3',
     },
     lg: {
-      mark: 'h-20 w-20',
-      wordmark: 'text-5xl tracking-[0.2em]',
+      mark: 'h-11 w-11 text-[18px]',
+      title: 'text-xl tracking-[0.18em]',
+      subtitle: 'text-[11px] tracking-[0.30em]',
+      gap: 'gap-3.5',
     },
-  };
+  } as const;
+
+  const current = sizes[size];
+  const showSubtitle = size !== 'sm';
 
   return (
-    <div className={joinClasses('flex items-center gap-3', className)}>
-      <svg
-        viewBox="0 0 64 64"
-        xmlns="http://www.w3.org/2000/svg"
-        className={joinClasses(
-          sizes[size].mark,
-          'text-[#F4F6F8]',
+    <div className={cn('inline-flex items-center', current.gap, className)}>
+      <div
+        className={cn(
+          'inline-flex shrink-0 items-center justify-center border border-white/20 bg-[#081326] text-white',
+          current.mark,
           markClassName
         )}
-        fill="none"
       >
-        <path
-          d="M32 5L42 22H35L32 16L29 22H22L32 5Z"
-          fill="currentColor"
-        />
-        <path
-          d="M22 26L31 21.5V30L25 34L22 42H13L18 29.5L22 26Z"
-          fill="currentColor"
-        />
-        <path
-          d="M42 26L33 21.5V30L39 34L42 42H51L46 29.5L42 26Z"
-          fill="currentColor"
-        />
-        <path d="M28.5 34H35.5V51L32 55L28.5 51V34Z" fill="currentColor" />
-      </svg>
+        <span className="font-semibold leading-none">A</span>
+      </div>
 
       {showWordmark ? (
-        <span
-          className={joinClasses(
-            'font-semibold uppercase text-[#F4F6F8]',
-            sizes[size].wordmark,
-            wordmarkClassName
-          )}
-        >
-          ASAT
-        </span>
+        <div className={cn('min-w-0', wordmarkClassName)}>
+          <div className={cn('font-semibold uppercase leading-none text-white', current.title)}>
+            ASAT
+          </div>
+
+          {showSubtitle ? (
+            <div
+              className={cn(
+                'mt-1 uppercase leading-none text-[#8FA3BC]',
+                current.subtitle
+              )}
+            >
+              Reserve Protocol
+            </div>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );
 }
+
+export default AsatLogo;

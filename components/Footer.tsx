@@ -1,72 +1,70 @@
-'use client';
-
 import { AsatLogo } from '@/components/AsatLogo';
 
 const ASAT_MINT =
-  process.env.NEXT_PUBLIC_ASAT_MINT ||
-  'HumYaGUBQva6HgP9BNqioicEGijVRK2xtSUMiT4gpump';
+  process.env.NEXT_PUBLIC_ASAT_MINT || 'HumYaGUBQva6HgP9BNqioicEGijVRK2xtSUMiT4gpump';
 
 function shortMint(value: string) {
-  return `${value.slice(0, 8)}...${value.slice(-6)}`;
+  if (!value) return '—';
+  if (value.length <= 18) return value;
+  return `${value.slice(0, 10)}...${value.slice(-8)}`;
 }
 
-export default function Footer() {
+export function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-[#050B14]">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <AsatLogo />
-              <div>
-                <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">
-                  ASAT / RESERVE PROTOCOL
-                </div>
-                <div className="mt-1 text-sm text-[#D7E0EA]">
-                  Neutral reserve unit for autonomous machine work and settlement.
-                </div>
-              </div>
-            </div>
+    <footer className="bg-[#07111F]">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="grid gap-8 border-b border-white/10 pb-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <div className="min-w-0">
+            <AsatLogo size="md" />
 
-            <div className="max-w-xl text-xs leading-6 text-[#7E90A7]">
-              Live on Solana. Registry visibility and tier status are derived from
-              verified ASAT balance at registration.
-            </div>
+            <p className="mt-5 max-w-xl text-base leading-8 text-[#C8D2DF]">
+              Neutral reserve unit for autonomous machine work and settlement.
+            </p>
+
+            <p className="mt-4 max-w-2xl text-sm leading-8 text-[#8FA3BC]">
+              Live on Solana. Registry visibility and tier status are derived from verified ASAT
+              balance at registration.
+            </p>
           </div>
 
-          <div className="grid gap-2 text-xs uppercase tracking-[0.18em] text-[#8FA3BC] md:text-right">
-            <a
-              href="https://x.com/ASATcoin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#8CEBFF]"
-            >
-              X / @ASATcoin
-            </a>
-            <a
-              href="https://t.me/ASATcoin"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#8CEBFF]"
-            >
-              Telegram / @ASATcoin
-            </a>
-            <a
-              href={`https://solscan.io/token/${ASAT_MINT}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#8CEBFF]"
-            >
-              Contract / {shortMint(ASAT_MINT)}
-            </a>
+          <div className="min-w-0">
+            <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Official</div>
+
+            <div className="mt-4 grid gap-3 text-sm">
+              <a
+                href="https://x.com/ASATcoin"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#C8D2DF] transition hover:text-white"
+              >
+                X / @ASATcoin
+              </a>
+              <a
+                href="https://t.me/ASATcoin"
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#C8D2DF] transition hover:text-white"
+              >
+                Telegram / @ASATcoin
+              </a>
+              <a
+                href={`https://solscan.io/token/${ASAT_MINT}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-[#C8D2DF] transition hover:text-white"
+              >
+                Contract / {shortMint(ASAT_MINT)}
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col gap-3 border-t border-white/10 pt-4 text-[11px] uppercase tracking-[0.18em] text-[#6F8399] sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 Agent Sats</span>
-          <span>Solana mainnet / registry active / protocol surface live</span>
+        <div className="pt-6 text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">
+          © 2026 Agent Sats · Solana mainnet · Registry active · Protocol surface live
         </div>
       </div>
     </footer>
   );
 }
+
+export default Footer;
