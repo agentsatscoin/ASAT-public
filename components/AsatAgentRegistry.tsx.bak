@@ -316,62 +316,54 @@ function TierBadge({ balance }: { balance: number }) {
         : 'border-white/10 bg-white/[0.03] text-[#D7E0EA]';
 
   return (
-    <span
-      className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}
-    >
+    <span className={`inline-flex items-center border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] ${tone}`}>
       {tierLabelFromBalance(balance)}
     </span>
   );
 }
 
-function CompactStatCard({ label, value }: { label: string; value: string }) {
+function StatCard({ label, value }: { label: string; value: string }) {
   return (
-    <div className="border border-white/10 bg-[#081326] px-4 py-4">
-      <div className="text-[10px] uppercase tracking-[0.22em] text-[#8FA3BC]">{label}</div>
-      <div className="mt-2 text-2xl font-semibold text-white sm:text-xl">{value}</div>
+    <div className="border border-white/10 bg-[#081326] p-4">
+      <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">{label}</div>
+      <div className="mt-2 text-xl font-semibold text-white">{value}</div>
     </div>
   );
 }
 
-function CompactRow({ agent }: { agent: Agent }) {
+function EntryCard({ agent }: { agent: Agent }) {
   return (
-    <div className="px-4 py-4">
+    <div className="border border-white/10 bg-[#081326] p-4">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[#8FA3BC]">Wallet</div>
-          <div className="mt-1 truncate font-mono text-sm text-white" title={agent.wallet_address}>
+          <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Wallet</div>
+          <div className="mt-2 break-all font-mono text-sm text-white" title={agent.wallet_address}>
             {shortWallet(agent.wallet_address)}
           </div>
         </div>
-        <div className="shrink-0">
-          <TierBadge balance={agent.asat_balance} />
-        </div>
+        <TierBadge balance={agent.asat_balance} />
       </div>
 
-      <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#8FA3BC]">Role</div>
-          <div className="mt-1 text-[#8CEBFF]">{roleLabel(agent.role)}</div>
+          <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Role</div>
+          <div className="mt-2 text-sm text-[#8CEBFF]">{roleLabel(agent.role)}</div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#8FA3BC]">Balance</div>
-          <div className="mt-1 text-white">{formatAsat(agent.asat_balance)}</div>
+          <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Balance</div>
+          <div className="mt-2 text-sm text-white">{formatAsat(agent.asat_balance)}</div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#8FA3BC]">Reward</div>
-          <div className="mt-1 text-white">{rewardLabel(agent.reward_status)}</div>
+          <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Reward</div>
+          <div className="mt-2 text-sm text-white">{rewardLabel(agent.reward_status)}</div>
         </div>
         <div>
-          <div className="text-[10px] uppercase tracking-[0.18em] text-[#8FA3BC]">Registered</div>
-          <div className="mt-1 text-white">{formatDate(agent.created_at)}</div>
+          <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">Registered</div>
+          <div className="mt-2 text-sm text-white">{formatDate(agent.created_at)}</div>
         </div>
       </div>
     </div>
   );
-}
-
-function EmptyRows({ text }: { text: string }) {
-  return <div className="px-4 py-4 text-sm text-[#8FA3BC]">{text}</div>;
 }
 
 export function AsatAgentRegistry() {
@@ -704,13 +696,13 @@ export function AsatAgentRegistry() {
           </p>
         </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {statusItems.map((item) => (
-            <CompactStatCard key={item.label} label={item.label} value={item.value} />
+            <StatCard key={item.label} label={item.label} value={item.value} />
           ))}
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
+        <div className="mt-4 flex flex-wrap gap-3">
           <span className="inline-flex items-center border border-white/10 bg-[#081326] px-3 py-2 text-[11px] uppercase tracking-[0.2em] text-[#D7E0EA]">
             Starter: {stats.byTier.starter}
           </span>
@@ -723,7 +715,6 @@ export function AsatAgentRegistry() {
         </div>
 
         <div className="mt-8 border border-white/10 bg-[#06101D]/90 p-5 sm:p-6">
-          {/* connect / already-registered / register flow - unchanged but now inside compact layout */}
           {!connected ? (
             <div>
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">Step 1</div>
@@ -752,7 +743,6 @@ export function AsatAgentRegistry() {
             </div>
           ) : existingAgent ? (
             <div>
-              {/* already registered UI - compact */}
               <div className="border border-[#C8B08A]/20 bg-[#C8B08A]/[0.06] p-4">
                 <div className="text-[11px] uppercase tracking-[0.25em] text-[#D5C3A0]">
                   Wallet status
@@ -786,12 +776,12 @@ export function AsatAgentRegistry() {
                   <div className="mt-3 break-all font-mono text-sm text-white">{walletAddress}</div>
                 </div>
 
-                <CompactStatCard label="Verified Balance" value={formatAsat(visibleBalance)} />
-                <CompactStatCard label="Tier" value={visibleTierLabel} />
-                <CompactStatCard label="Role" value={roleLabel(existingAgent.role)} />
-                <CompactStatCard label="Registered" value={formatDate(existingAgent.created_at)} />
-                <CompactStatCard label="X Handle" value={existingAgent.x_handle || '—'} />
-                <CompactStatCard label="Reward Status" value={rewardLabel(existingAgent.reward_status)} />
+                <StatCard label="Verified Balance" value={formatAsat(visibleBalance)} />
+                <StatCard label="Tier" value={visibleTierLabel} />
+                <StatCard label="Role" value={roleLabel(existingAgent.role)} />
+                <StatCard label="Registered" value={formatDate(existingAgent.created_at)} />
+                <StatCard label="X Handle" value={existingAgent.x_handle || '—'} />
+                <StatCard label="Reward Status" value={rewardLabel(existingAgent.reward_status)} />
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -815,7 +805,6 @@ export function AsatAgentRegistry() {
             </div>
           ) : (
             <div>
-              {/* registration flow */}
               <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">Step 2</div>
               <h3 className="mt-4 text-2xl font-semibold text-white">Complete Registration</h3>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#B6C4D5]">
@@ -843,7 +832,7 @@ export function AsatAgentRegistry() {
                   <div className="mt-3 break-all font-mono text-sm text-white">{walletAddress}</div>
                 </div>
 
-                <CompactStatCard
+                <StatCard
                   label="ASAT Balance"
                   value={
                     balanceLoading
@@ -853,13 +842,14 @@ export function AsatAgentRegistry() {
                         : 'Unverified'
                   }
                 />
-                <CompactStatCard label="Tier" value={visibleTierLabel} />
+                <StatCard label="Tier" value={visibleTierLabel} />
               </div>
 
               <div className="mt-6">
                 <div className="text-[11px] uppercase tracking-[0.25em] text-[#8FA3BC]">
                   Choose Your Role
                 </div>
+
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   {ROLE_OPTIONS.map((role) => {
                     const active = selectedRole === role.id;
@@ -933,30 +923,34 @@ export function AsatAgentRegistry() {
         <div className="mt-8 grid gap-6 xl:grid-cols-2">
           <div className="border border-white/10 bg-[#06101D]/90 p-5 sm:p-6">
             <h3 className="text-2xl font-semibold text-white">Early Operator Reward Pool</h3>
-            <p className="mt-3 text-base leading-7 text-[#C8D2DF]">
+            <p className="mt-4 text-base leading-7 text-[#C8D2DF]">
               Top 5 registry entries by ASAT balance.
             </p>
 
-            <div className="mt-5 divide-y divide-white/10 border border-white/10 bg-[#081326]">
+            <div className="mt-6 space-y-4">
               {rewardPoolRows.length === 0 ? (
-                <EmptyRows text="No reward-pool rows yet." />
+                <div className="border border-white/10 bg-[#081326] p-4 text-sm text-[#9FB0C5]">
+                  No reward-pool rows yet.
+                </div>
               ) : (
-                rewardPoolRows.map((agent) => <CompactRow key={agent.id} agent={agent} />)
+                rewardPoolRows.map((agent) => <EntryCard key={agent.id} agent={agent} />)
               )}
             </div>
           </div>
 
           <div className="border border-white/10 bg-[#06101D]/90 p-5 sm:p-6">
             <h3 className="text-2xl font-semibold text-white">Latest Registry Entries</h3>
-            <p className="mt-3 text-base leading-7 text-[#C8D2DF]">
+            <p className="mt-4 text-base leading-7 text-[#C8D2DF]">
               Latest 5 signed entries from the live registry.
             </p>
 
-            <div className="mt-5 divide-y divide-white/10 border border-white/10 bg-[#081326]">
+            <div className="mt-6 space-y-4">
               {latestEntryRows.length === 0 ? (
-                <EmptyRows text="No registry entries yet." />
+                <div className="border border-white/10 bg-[#081326] p-4 text-sm text-[#9FB0C5]">
+                  No registry entries yet.
+                </div>
               ) : (
-                latestEntryRows.map((agent) => <CompactRow key={agent.id} agent={agent} />)
+                latestEntryRows.map((agent) => <EntryCard key={agent.id} agent={agent} />)
               )}
             </div>
           </div>
