@@ -12,7 +12,7 @@ export function Hero() {
 
   return (
     <section id="top" className="overflow-hidden border-b border-white/10 bg-[#050816]">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 py-14 sm:px-6 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-center lg:gap-16 lg:px-8 lg:py-24">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-center lg:gap-12 lg:px-8 lg:py-20">
         <div className="min-w-0">
           <div className="inline-flex items-center gap-3 border border-white/10 bg-[#081326] px-4 py-3 text-[11px] uppercase tracking-[0.28em] text-[#C9D3E0]">
             <span className="flex h-5 w-5 items-center justify-center border border-white/20 text-[11px] font-semibold text-white">
@@ -21,13 +21,13 @@ export function Hero() {
             ASAT / Reserve Protocol
           </div>
 
-          <h1 className="mt-8 max-w-[760px] text-5xl font-semibold leading-[0.96] tracking-[-0.06em] text-white sm:text-6xl lg:text-[72px]">
+          <h1 className="mt-7 max-w-[760px] text-4xl font-semibold leading-[0.96] tracking-[-0.06em] text-white sm:text-6xl lg:text-[68px]">
             The reserve unit for the autonomous economy.
           </h1>
 
-          <p className="mt-6 max-w-[760px] text-lg leading-8 text-[#C8D2DF] sm:text-[22px]">
-            ASAT is the neutral monetary layer for autonomous machine work, registry
-            coordination, and future machine-to-machine settlement.
+          <p className="mt-5 max-w-[760px] text-base leading-8 text-[#C8D2DF] sm:text-[21px]">
+            ASAT is the neutral reserve layer for autonomous machine work, registry coordination,
+            and future machine-to-machine settlement.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -48,24 +48,36 @@ export function Hero() {
             </button>
           </div>
 
-          <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-6 text-[11px] uppercase tracking-[0.28em] text-[#A8B6C8]">
-            <span>Live on Solana</span>
-            <span>Registry active</span>
-            <span>Contract verified</span>
-            <span>Official channels live</span>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="border border-white/10 bg-[#081326] px-4 py-4">
+              <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Chain</div>
+              <div className="mt-2 text-lg font-semibold text-white">Solana</div>
+            </div>
+            <div className="border border-white/10 bg-[#081326] px-4 py-4">
+              <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Registry</div>
+              <div className="mt-2 text-lg font-semibold text-white">Live</div>
+            </div>
+            <div className="border border-white/10 bg-[#081326] px-4 py-4">
+              <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Contract</div>
+              <div className="mt-2 text-lg font-semibold text-white">Verified</div>
+            </div>
+            <div className="border border-white/10 bg-[#081326] px-4 py-4">
+              <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Channels</div>
+              <div className="mt-2 text-lg font-semibold text-white">Official</div>
+            </div>
           </div>
         </div>
 
-        <div className="min-w-0 lg:justify-self-center">
-          <div className="mx-auto w-full max-w-[380px] border border-white/10 bg-[#081326] p-6">
+        <div className="min-w-0">
+          <div className="mx-auto w-full max-w-[420px] border border-white/10 bg-[#081326] p-5 sm:p-6">
             <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
               <div className="text-[11px] uppercase tracking-[0.28em] text-[#D7E0EA]">
-                Machine Surface
+                Protocol Surface
               </div>
               <div className="text-[11px] uppercase tracking-[0.22em] text-[#8FA3BC]">v1</div>
             </div>
 
-            <div className="space-y-4 pt-4">
+            <div className="grid gap-4 pt-4">
               <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <span className="text-sm text-[#9FB0C5]">status</span>
                 <span className="text-sm font-semibold text-white">live</span>

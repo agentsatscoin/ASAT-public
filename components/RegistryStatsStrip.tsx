@@ -76,12 +76,8 @@ export function RegistryStatsStrip() {
         const res = await fetch('/api/stats', { cache: 'no-store' });
         const data = await safeJson(res);
         setStats(normalizeStats(data));
-<<<<<<< HEAD
-      } catch {
-=======
       } catch (err) {
         console.error('Failed to fetch stats:', err);
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
         setStats(EMPTY_STATS);
       } finally {
         setLoading(false);
@@ -101,20 +97,6 @@ export function RegistryStatsStrip() {
   const lastReg = formatLastRegistration(stats.lastRegistration);
 
   return (
-<<<<<<< HEAD
-    <div className="border-y border-white/10 bg-[#081326] px-4 py-3 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] uppercase tracking-[0.18em] sm:gap-6">
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Registered Agents</span>
-            <span className="ml-2 font-semibold text-[#F4F6F8]">{stats.total}</span>
-          </div>
-
-          <div className="hidden h-4 w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Starter</span>
-=======
     <div className="border-y border-white/10 bg-[#081326]/75 px-4 py-3 backdrop-blur sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap justify-center gap-5 text-sm sm:gap-8">
@@ -127,55 +109,33 @@ export function RegistryStatsStrip() {
 
           <div className="text-center">
             <span className="text-[#8FA3BC]">Starter:</span>
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
             <span className="ml-2 font-semibold text-[#D7E0EA]">
               {stats.byTier.starter}
             </span>
           </div>
 
-<<<<<<< HEAD
-          <div className="hidden h-4 w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Standard</span>
-=======
           <div className="hidden w-px bg-white/10 sm:block" />
 
           <div className="text-center">
             <span className="text-[#8FA3BC]">Standard:</span>
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
             <span className="ml-2 font-semibold text-[#8CEBFF]">
               {stats.byTier.standard}
             </span>
           </div>
 
-<<<<<<< HEAD
-          <div className="hidden h-4 w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Premium</span>
-=======
           <div className="hidden w-px bg-white/10 sm:block" />
 
           <div className="text-center">
             <span className="text-[#8FA3BC]">Premium:</span>
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
             <span className="ml-2 font-semibold text-[#C8B08A]">
               {stats.byTier.premium}
             </span>
           </div>
 
-<<<<<<< HEAD
-          <div className="hidden h-4 w-px bg-white/10 sm:block" />
-
-          <div className="text-center">
-            <span className="text-[#8FA3BC]">Last registration</span>
-=======
           <div className="hidden w-px bg-white/10 sm:block" />
 
           <div className="text-center">
             <span className="text-[#8FA3BC]">Last registration:</span>
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
             <span className="ml-2 font-semibold text-[#F4F6F8]">{lastReg}</span>
           </div>
         </div>

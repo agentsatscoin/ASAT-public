@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-type AsatLogoProps = {
-  className?: string;
-};
-=======
 interface AsatLogoProps {
   className?: string;
   markClassName?: string;
@@ -36,17 +31,8 @@ export function AsatLogo({
       wordmark: 'text-5xl tracking-[0.2em]',
     },
   };
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 
-export function AsatLogo({ className = "h-6 w-6" }: AsatLogoProps) {
   return (
-<<<<<<< HEAD
-    <img
-      src="/logos/asat-agent-glyph.svg"
-      alt="ASAT"
-      className={className}
-    />
-=======
     <div className={joinClasses('flex items-center gap-3', className)}>
       <svg
         viewBox="0 0 64 64"
@@ -85,8 +71,5 @@ export function AsatLogo({ className = "h-6 w-6" }: AsatLogoProps) {
         </span>
       ) : null}
     </div>
->>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
   );
 }
-
-export default AsatLogo;
