@@ -76,6 +76,83 @@ function normalizeRewardKey(value: unknown): RewardKey | null {
   return null;
 }
 
+<<<<<<< HEAD
+=======
+type TierKey = 'starter' | 'standard' | 'premium';
+type RoleKey = 'operator' | 'validator' | 'router' | 'scout';
+type RewardKey = 'pending' | 'rewarded';
+
+const EMPTY_STATS = {
+  total: 0,
+  byTier: {
+    starter: 0,
+    standard: 0,
+    premium: 0,
+  },
+  byRole: {
+    operator: 0,
+    validator: 0,
+    router: 0,
+    scout: 0,
+  },
+  byRewardStatus: {
+    pending: 0,
+    rewarded: 0,
+  },
+  pooledAssetsUsd: 0,
+  stakedAsat: 0,
+  lastRegistration: null as string | null,
+};
+
+function json(payload: unknown, status = 200) {
+  return NextResponse.json(payload, {
+    status,
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
+    },
+  });
+}
+
+function toNumber(value: unknown): number {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function normalizeTierKey(value: unknown): TierKey {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (key === 'premium' || key === 'gold' || key === 'elite') return 'premium';
+  if (key === 'standard' || key === 'silver') return 'standard';
+  return 'starter';
+}
+
+function normalizeRoleKey(value: unknown): RoleKey | null {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (
+    key === 'operator' ||
+    key === 'validator' ||
+    key === 'router' ||
+    key === 'scout'
+  ) {
+    return key;
+  }
+
+  return null;
+}
+
+function normalizeRewardKey(value: unknown): RewardKey | null {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (key === 'pending' || key === 'rewarded') {
+    return key;
+  }
+
+  return null;
+}
+
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 export async function GET() {
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -133,7 +210,11 @@ export async function GET() {
       stats.total += 1;
       stats.stakedAsat += toNumber(agent?.asat_balance);
 
+<<<<<<< HEAD
       const tierKey = deriveTierKeyFromBalance(agent?.asat_balance);
+=======
+      const tierKey = normalizeTierKey(agent?.tier);
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
       stats.byTier[tierKey] += 1;
 
       const roleKey = normalizeRoleKey(agent?.role);

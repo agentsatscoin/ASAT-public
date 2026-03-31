@@ -9,7 +9,11 @@ type TierKey = 'starter' | 'standard' | 'premium';
 type RoleKey = 'operator' | 'validator' | 'router' | 'scout';
 type RewardKey = 'pending' | 'rewarded';
 
+<<<<<<< HEAD
 type Agent = {
+=======
+interface Agent {
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
   id: string;
   wallet_address: string;
   asat_balance: number;
@@ -70,6 +74,7 @@ declare global {
 
 const EMPTY_STATS: Stats = {
   total: 0,
+<<<<<<< HEAD
   byTier: {
     starter: 0,
     standard: 0,
@@ -88,6 +93,13 @@ const EMPTY_STATS: Stats = {
   pooledAssetsUsd: 0,
   stakedAsat: 0,
   lastRegistration: null,
+=======
+  byTier: { starter: 0, standard: 0, premium: 0 },
+  byRole: { operator: 0, validator: 0, router: 0, scout: 0 },
+  byRewardStatus: { pending: 0, rewarded: 0 },
+  pooledAssetsUsd: 0,
+  stakedAsat: 0,
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 };
 
 const ROLE_OPTIONS: Array<{
@@ -95,10 +107,33 @@ const ROLE_OPTIONS: Array<{
   label: string;
   description: string;
 }> = [
+<<<<<<< HEAD
   { id: 'operator', label: 'Operator', description: 'Run tasks and coordinate work' },
   { id: 'validator', label: 'Validator', description: 'Verify proofs and outcomes' },
   { id: 'router', label: 'Router', description: 'Route flows across systems' },
   { id: 'scout', label: 'Scout', description: 'Discover and surface opportunities' },
+=======
+  {
+    id: 'operator',
+    label: 'Operator',
+    description: 'Run tasks and coordinate work',
+  },
+  {
+    id: 'validator',
+    label: 'Validator',
+    description: 'Verify task proofs',
+  },
+  {
+    id: 'router',
+    label: 'Router',
+    description: 'Route and coordinate agents',
+  },
+  {
+    id: 'scout',
+    label: 'Scout',
+    description: 'Discover and signal opportunities',
+  },
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 ];
 
 function getPhantomProvider(): PhantomProvider | null {
@@ -119,10 +154,49 @@ function toNumber(value: unknown): number {
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
+<<<<<<< HEAD
 function tierFromBalance(balance: number): TierKey {
   const value = toNumber(balance);
   if (value >= 10_000_000) return 'premium';
   if (value >= 1_000_000) return 'standard';
+=======
+function normalizeTierKey(value: unknown): TierKey {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (key === 'premium' || key === 'gold' || key === 'elite') return 'premium';
+  if (key === 'standard' || key === 'silver') return 'standard';
+  return 'starter';
+}
+
+function normalizeRoleKey(value: unknown): RoleKey | null {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (
+    key === 'operator' ||
+    key === 'validator' ||
+    key === 'router' ||
+    key === 'scout'
+  ) {
+    return key;
+  }
+
+  return null;
+}
+
+function normalizeRewardKey(value: unknown): RewardKey | null {
+  const key = String(value ?? '').trim().toLowerCase();
+
+  if (key === 'pending' || key === 'rewarded') {
+    return key;
+  }
+
+  return null;
+}
+
+function getTierKey(balance: number): TierKey {
+  if (balance > 5000) return 'premium';
+  if (balance > 1000) return 'standard';
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
   return 'starter';
 }
 
@@ -160,6 +234,7 @@ function formatCompactNumber(value: number) {
     notation: 'compact',
     maximumFractionDigits: 1,
   }).format(toNumber(value));
+<<<<<<< HEAD
 }
 
 function formatLongNumber(value: number) {
@@ -174,6 +249,8 @@ function formatAsat(value: number) {
 
 function formatAsatLong(value: number) {
   return `${formatLongNumber(value)} ASAT`;
+=======
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 }
 
 function formatUsd(value: number) {
@@ -182,6 +259,52 @@ function formatUsd(value: number) {
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(toNumber(value));
+<<<<<<< HEAD
+=======
+}
+
+function normalizeStats(input: any): Stats {
+  const byTier = input?.byTier ?? input?.tiers ?? {};
+  const byRole = input?.byRole ?? input?.roles ?? {};
+  const byRewardStatus = input?.byRewardStatus ?? input?.rewardStatus ?? {};
+
+  return {
+    total: toNumber(input?.total),
+    byTier: {
+      starter: toNumber(byTier?.starter),
+      standard: toNumber(byTier?.standard),
+      premium: toNumber(byTier?.premium),
+    },
+    byRole: {
+      operator: toNumber(byRole?.operator),
+      validator: toNumber(byRole?.validator),
+      router: toNumber(byRole?.router),
+      scout: toNumber(byRole?.scout),
+    },
+    byRewardStatus: {
+      pending: toNumber(byRewardStatus?.pending),
+      rewarded: toNumber(byRewardStatus?.rewarded),
+    },
+    pooledAssetsUsd:
+      input?.pooledAssetsUsd == null ? 0 : toNumber(input?.pooledAssetsUsd),
+    stakedAsat: input?.stakedAsat == null ? 0 : toNumber(input?.stakedAsat),
+  };
+}
+
+function normalizeAgents(input: any): Agent[] {
+  if (!Array.isArray(input)) return [];
+
+  return input.map((agent: any, index: number) => ({
+    id: String(agent?.id ?? `${agent?.wallet_address ?? 'agent'}-${index}`),
+    wallet_address: String(agent?.wallet_address ?? ''),
+    asat_balance: toNumber(agent?.asat_balance),
+    tier: String(agent?.tier ?? 'starter'),
+    role: String(agent?.role ?? 'operator'),
+    x_handle: agent?.x_handle ? String(agent.x_handle) : null,
+    reward_status: String(agent?.reward_status ?? 'pending'),
+    created_at: String(agent?.created_at ?? new Date().toISOString()),
+  }));
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 }
 
 function formatDate(value: string | null | undefined) {
@@ -266,7 +389,11 @@ async function fetchAsatBalance(walletAddress: string): Promise<number> {
     throw new Error((payload as any)?.error || 'Failed to fetch ASAT balance.');
   }
 
+<<<<<<< HEAD
   return toNumber((payload as any)?.asatBalance);
+=======
+  return toNumber(payload?.asatBalance);
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
 }
 
 function buildRegistrationMessage(args: {
@@ -364,6 +491,7 @@ export function AsatAgentRegistry() {
   const [stats, setStats] = useState<Stats>(EMPTY_STATS);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
+<<<<<<< HEAD
   const sortedAgents = useMemo(
     () =>
       [...agents].sort(
@@ -415,6 +543,8 @@ export function AsatAgentRegistry() {
     },
   ];
 
+=======
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
   const resetWalletState = () => {
     setConnected(false);
     setWalletAddress('');
@@ -425,20 +555,36 @@ export function AsatAgentRegistry() {
 
   const loadStats = async () => {
     try {
+<<<<<<< HEAD
       const response = await fetch('/api/stats', { cache: 'no-store' });
       const data = await safeJson(response);
       setStats(normalizeStats(data));
     } catch {
+=======
+      const res = await fetch('/api/stats', { cache: 'no-store' });
+      const data = await safeJson(res);
+      setStats(normalizeStats(data));
+    } catch (err) {
+      console.error('Failed to fetch stats:', err);
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
       setStats(EMPTY_STATS);
     }
   };
 
   const loadAgents = async () => {
     try {
+<<<<<<< HEAD
       const response = await fetch('/api/registry', { cache: 'no-store' });
       const data = await safeJson(response);
       setAgents(normalizeAgents((data as any)?.agents ?? data));
     } catch {
+=======
+      const res = await fetch('/api/registry', { cache: 'no-store' });
+      const data = await safeJson(res);
+      setAgents(normalizeAgents(data?.agents ?? data));
+    } catch (err) {
+      console.error('Failed to fetch agents:', err);
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
       setAgents([]);
     }
   };
@@ -470,12 +616,21 @@ export function AsatAgentRegistry() {
   };
 
   useEffect(() => {
+<<<<<<< HEAD
     void loadStats();
     void loadAgents();
 
     const interval = setInterval(() => {
       void loadStats();
       void loadAgents();
+=======
+    void fetchStats();
+    void fetchAgents();
+
+    const interval = setInterval(() => {
+      void fetchStats();
+      void fetchAgents();
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
     }, 5000);
 
     const provider = getPhantomProvider();
@@ -636,10 +791,29 @@ export function AsatAgentRegistry() {
 
       if (response.ok) {
         setShowSuccessToast(true);
+<<<<<<< HEAD
         window.setTimeout(() => setShowSuccessToast(false), 3500);
         await loadAgents();
         await loadStats();
         return;
+=======
+        setTimeout(() => setShowSuccessToast(false), 4000);
+
+        if (data?.agent) {
+          const normalizedAgent = normalizeAgents([data.agent])[0];
+          setAgents((current) => [
+            normalizedAgent,
+            ...current.filter((agent) => agent.id !== normalizedAgent.id),
+          ]);
+        }
+
+        await fetchStats();
+        await fetchAgents();
+      } else if (res.status === 409) {
+        setError('This wallet is already registered');
+      } else {
+        setError(data?.error || 'Registration failed');
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
       }
 
       if (response.status === 409) {
@@ -670,12 +844,48 @@ export function AsatAgentRegistry() {
         ? toNumber(existingAgent.asat_balance)
         : 0;
 
+<<<<<<< HEAD
   const visibleTierLabel =
     balanceLoaded && connected
       ? tierLabelFromBalance(asatBalance)
       : existingAgent
         ? tierLabelFromBalance(existingAgent.asat_balance)
         : 'Unverified';
+=======
+  const totalTrackedAsat = useMemo(() => {
+    return agents.reduce((sum, agent) => sum + toNumber(agent.asat_balance), 0);
+  }, [agents]);
+
+  const rewardPoolRows = useMemo(() => agents.slice(0, 5), [agents]);
+
+  const pooledAssetsValue =
+    typeof stats.pooledAssetsUsd === 'number'
+      ? formatUsd(stats.pooledAssetsUsd)
+      : '—';
+
+  const stakedAsatValue =
+    typeof stats.stakedAsat === 'number'
+      ? `${formatCompactNumber(stats.stakedAsat)} ASAT`
+      : totalTrackedAsat > 0
+      ? `${formatCompactNumber(totalTrackedAsat)} ASAT`
+      : '—';
+
+  const statusItems = [
+    { label: 'Pooled Assets', value: pooledAssetsValue },
+    { label: 'Registered Agents', value: String(toNumber(stats.total)) },
+    { label: 'Staked ASAT', value: stakedAsatValue },
+    {
+      label: 'Pending Rewards',
+      value: String(toNumber(stats.byRewardStatus?.pending)),
+    },
+  ];
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
+
+  const tierItems = [
+    { label: 'Starter', value: toNumber(stats.byTier?.starter), tone: 'text-[#D7E0EA]' },
+    { label: 'Standard', value: toNumber(stats.byTier?.standard), tone: 'text-[#8CEBFF]' },
+    { label: 'Premium', value: toNumber(stats.byTier?.premium), tone: 'text-[#C8B08A]' },
+  ];
 
   return (
     <section id="registry" className="border-b border-white/10 bg-[#07111F]">
@@ -704,11 +914,401 @@ export function AsatAgentRegistry() {
 
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
                 {tierItems.map((item) => (
+<<<<<<< HEAD
                   <div key={item.label} className="border border-white/10 bg-[#081326] p-4">
                     <div className="text-[11px] uppercase tracking-[0.25em] text-[#9FB0C5]">
                       {item.label}
                     </div>
                     <div className="mt-3 text-4xl font-semibold tracking-[-0.05em] text-white">
+=======
+                  <div
+                    key={item.label}
+                    className="rounded-2xl border border-white/10 bg-[#060B14]/60 p-4"
+                  >
+                    <div className="text-xs uppercase tracking-[0.14em] text-[#8FA3BC]">
+                      {item.label}
+                    </div>
+                    <div className={`mt-2 text-2xl font-semibold ${item.tone}`}>
+                      {item.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-8 rounded-[24px] border border-white/10 bg-[#060B14]/60 p-5 sm:p-6">
+                {!connected ? (
+                  <div className="space-y-5">
+                    {error ? (
+                      <div className="rounded-2xl border border-red-500/40 bg-red-950/20 px-4 py-3 text-sm text-red-200">
+                        {error}
+                      </div>
+                    ) : null}
+
+                    <div>
+                      <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#8FA3BC]">
+                        Step 1
+                      </div>
+                      <h3 className="mt-2 text-2xl font-semibold text-[#F4F6F8]">
+                        Connect Wallet
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[#AEBBCC]">
+                        Connect your Solana wallet to verify ASAT balance and begin
+                        registration.
+                      </p>
+                    </div>
+
+                    <button
+                      id="connect-phantom-btn"
+                      onClick={connectWallet}
+                      disabled={loading}
+                      className="rounded-2xl bg-[#A8E8F8] px-6 py-3 text-sm font-semibold text-[#081326] transition hover:bg-[#B9F0FF] disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {loading ? 'Connecting...' : 'Connect Phantom Wallet'}
+                    </button>
+                  </div>
+                ) : registered ? (
+                  <div className="space-y-6">
+                    <div className="rounded-2xl border border-[#11D6FF]/25 bg-[#11D6FF]/10 px-4 py-3 text-sm font-medium text-[#8CEBFF]">
+                      Registration complete. Your wallet is now in the ASAT operator
+                      registry.
+                    </div>
+
+                    <div className="space-y-2">
+                      <h3 className="text-2xl font-semibold text-[#F4F6F8]">
+                        Registration Successful
+                      </h3>
+                      <p className="text-sm leading-7 text-[#AEBBCC]">
+                        Your wallet has been registered as an early operator. Join
+                        the{' '}
+                        <a
+                          href="https://t.me/ASATcoin"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#8CEBFF] hover:underline"
+                        >
+                          Telegram community
+                        </a>{' '}
+                        for Phase 1 updates.
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => {
+                        setShowSuccessToast(false);
+                        setSelectedRole('');
+                        setXHandle('');
+                        setError('');
+                        setRpcNotice('');
+                        resetWalletState();
+                      }}
+                      className="rounded-2xl border border-white/20 px-5 py-3 text-sm font-semibold text-[#F4F6F8] transition hover:border-[#11D6FF]/60 hover:bg-white/5"
+                    >
+                      Register Another Wallet
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-8">
+                    {error ? (
+                      <div className="rounded-2xl border border-red-500/40 bg-red-950/20 px-4 py-3 text-sm text-red-200">
+                        {error}
+                      </div>
+                    ) : null}
+
+                    {rpcNotice ? (
+                      <div className="rounded-2xl border border-amber-500/30 bg-amber-950/20 px-4 py-3 text-sm text-amber-100">
+                        {rpcNotice}
+                      </div>
+                    ) : null}
+
+                    <div className="rounded-2xl border border-white/10 bg-[#081326] p-5">
+                      <div className="grid gap-5 md:grid-cols-2">
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.14em] text-[#8FA3BC]">
+                            Wallet Address
+                          </div>
+                          <div className="mt-2 break-all font-mono text-sm text-[#DDE5EE]">
+                            {walletAddress}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div>
+                            <div className="text-xs uppercase tracking-[0.14em] text-[#8FA3BC]">
+                              ASAT Balance
+                            </div>
+                            <div className="mt-2 text-lg font-semibold text-[#8CEBFF]">
+                              {balanceLoading
+                                ? 'Loading...'
+                                : balanceLoaded
+                                ? `${asatBalance.toLocaleString(undefined, {
+                                    maximumFractionDigits: 6,
+                                  })} ASAT`
+                                : 'Unverified'}
+                            </div>
+                          </div>
+
+                          <div>
+                            <div className="text-xs uppercase tracking-[0.14em] text-[#8FA3BC]">
+                              Tier
+                            </div>
+                            <div
+                              className={`mt-2 text-lg font-semibold ${
+                                balanceTierLabel === 'Premium'
+                                  ? 'text-[#C8B08A]'
+                                  : balanceTierLabel === 'Standard'
+                                  ? 'text-[#8CEBFF]'
+                                  : 'text-[#D7E0EA]'
+                              }`}
+                            >
+                              {balanceTierLabel}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-5 flex flex-wrap gap-3">
+                        <button
+                          type="button"
+                          onClick={() => refreshBalance(walletAddress)}
+                          disabled={balanceLoading || loading}
+                          className="rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[#F4F6F8] transition hover:border-[#11D6FF]/60 hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-60"
+                        >
+                          {balanceLoading
+                            ? 'Refreshing Balance...'
+                            : 'Retry Balance Lookup'}
+                        </button>
+                      </div>
+
+                      <p className="mt-4 text-xs leading-6 text-[#8FA3BC]">
+                        Registration stays locked until ASAT balance is verified and
+                        the message is signed in Phantom.
+                      </p>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div>
+                        <div className="text-sm font-semibold uppercase tracking-[0.14em] text-[#8FA3BC]">
+                          Step 2
+                        </div>
+                        <h3 className="mt-2 text-2xl font-semibold text-[#F4F6F8]">
+                          Choose Your Role
+                        </h3>
+                      </div>
+
+                      <div className="grid gap-4 md:grid-cols-2">
+                        {ROLE_OPTIONS.map((role) => (
+                          <button
+                            key={role.id}
+                            onClick={() => setSelectedRole(role.id)}
+                            className={`rounded-2xl border p-4 text-left transition ${
+                              selectedRole === role.id
+                                ? 'border-[#11D6FF]/60 bg-[#11D6FF]/10'
+                                : 'border-white/10 bg-[#081326] hover:border-[#11D6FF]/35'
+                            }`}
+                          >
+                            <div className="text-lg font-semibold text-[#F4F6F8]">
+                              {role.label}
+                            </div>
+                            <div className="mt-1 text-sm leading-6 text-[#AEBBCC]">
+                              {role.description}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="block text-sm font-semibold text-[#F4F6F8]">
+                        X Handle (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="@yourhandle"
+                        value={xHandle}
+                        onChange={(e) => setXHandle(e.target.value)}
+                        className="w-full rounded-2xl border border-white/10 bg-[#081326] px-4 py-3 text-white placeholder:text-[#6F8399] focus:border-[#11D6FF]/50 focus:outline-none"
+                      />
+                    </div>
+
+                    <button
+                      onClick={handleRegister}
+                      disabled={
+                        !selectedRole || loading || balanceLoading || !balanceLoaded
+                      }
+                      className="w-full rounded-2xl bg-[#A8E8F8] px-6 py-4 text-base font-semibold text-[#081326] transition hover:bg-[#B9F0FF] disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {loading
+                        ? 'Awaiting Phantom Approval...'
+                        : !balanceLoaded
+                        ? 'Verify ASAT Balance Before Registering'
+                        : 'Sign & Register'}
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-[#081326]/88 p-6 sm:p-8 backdrop-blur-sm">
+              <div className="mb-6">
+                <h3 className="text-2xl font-semibold text-[#F4F6F8]">
+                  Early Operator Reward Pool
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[#AEBBCC]">
+                  Register your wallet, secure your tier, and establish your
+                  position in the ASAT operator registry.
+                </p>
+              </div>
+
+              <div className="overflow-hidden rounded-2xl border border-white/10">
+                <table className="w-full border-collapse">
+                  <thead className="bg-white/[0.03] text-left text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                    <tr>
+                      <th className="px-4 py-4 font-medium">Wallet</th>
+                      <th className="px-4 py-4 font-medium">Role</th>
+                      <th className="px-4 py-4 font-medium">Balance</th>
+                      <th className="px-4 py-4 font-medium">Tier</th>
+                      <th className="px-4 py-4 font-medium">Reward Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rewardPoolRows.length > 0 ? (
+                      rewardPoolRows.map((agent) => (
+                        <tr
+                          key={agent.id}
+                          className="border-t border-white/10 text-sm text-[#E8EDF2]"
+                        >
+                          <td className="px-4 py-4 font-mono text-[#DDE5EE]">
+                            {agent.wallet_address.slice(0, 8)}...
+                            {agent.wallet_address.slice(-6)}
+                          </td>
+                          <td className="px-4 py-4 capitalize">{agent.role}</td>
+                          <td className="px-4 py-4">
+                            {toNumber(agent.asat_balance).toLocaleString()} ASAT
+                          </td>
+                          <td className="px-4 py-4 capitalize">
+                            {normalizeTierKey(agent.tier)}
+                          </td>
+                          <td className="px-4 py-4">
+                            <span className="rounded-full border border-[#11D6FF]/25 bg-[#11D6FF]/10 px-3 py-1 text-xs font-medium capitalize text-[#8CEBFF]">
+                              {agent.reward_status}
+                            </span>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr className="border-t border-white/10">
+                        <td
+                          colSpan={5}
+                          className="px-4 py-6 text-sm text-[#AEBBCC]"
+                        >
+                          Live reward-pool rows will appear here as registry data
+                          populates.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {agents.length > 0 ? (
+              <div className="rounded-[28px] border border-white/10 bg-[#081326]/88 p-6 sm:p-8 backdrop-blur-sm">
+                <div className="mb-6">
+                  <h3 className="text-2xl font-semibold text-[#F4F6F8]">
+                    Recent Registrations
+                  </h3>
+                  <p className="mt-2 text-sm leading-7 text-[#AEBBCC]">
+                    Live registrations pulled from the ASAT registry database.
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  {agents.slice(0, 6).map((agent) => (
+                    <div
+                      key={agent.id}
+                      className="rounded-2xl border border-white/10 bg-[#060B14]/50 p-4"
+                    >
+                      <div className="grid gap-4 text-sm md:grid-cols-6">
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Wallet
+                          </div>
+                          <div className="mt-1 font-mono text-[#DDE5EE]">
+                            {agent.wallet_address.slice(0, 8)}...
+                            {agent.wallet_address.slice(-6)}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Role
+                          </div>
+                          <div className="mt-1 capitalize text-[#8CEBFF]">
+                            {agent.role}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Balance
+                          </div>
+                          <div className="mt-1 text-[#F4F6F8]">
+                            {toNumber(agent.asat_balance).toLocaleString()} ASAT
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Tier
+                          </div>
+                          <div className="mt-1 capitalize text-[#F4F6F8]">
+                            {normalizeTierKey(agent.tier)}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Reward
+                          </div>
+                          <div className="mt-1 capitalize text-[#D7E0EA]">
+                            {agent.reward_status}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="text-xs uppercase tracking-[0.12em] text-[#8FA3BC]">
+                            Registered
+                          </div>
+                          <div className="mt-1 text-[#D7E0EA]">
+                            {new Date(agent.created_at).toLocaleDateString()}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="space-y-6">
+            <div className="rounded-[28px] border border-white/10 bg-[#081326]/88 p-6 backdrop-blur-sm">
+              <div className="mb-6 flex items-center justify-between gap-4">
+                <h3 className="text-xl font-semibold text-[#F4F6F8]">
+                  Status Rail
+                </h3>
+                <div className="h-px w-20 bg-gradient-to-r from-[#11D6FF] to-transparent" />
+              </div>
+
+              <div className="space-y-4">
+                {statusItems.map((item) => (
+                  <div
+                    key={item.label}
+                    className="flex items-center justify-between gap-4 border-b border-white/10 pb-4 last:border-0 last:pb-0"
+                  >
+                    <span className="text-sm text-[#C9D3DF]">{item.label}</span>
+                    <span className="text-2xl font-semibold text-[#F4F6F8]">
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
                       {item.value}
                     </div>
                   </div>
@@ -1096,7 +1696,74 @@ export function AsatAgentRegistry() {
                     ))}
                   </div>
                 </div>
+<<<<<<< HEAD
               </SectionCard>
+=======
+
+                <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+                  <span className="text-sm text-[#C9D3DF]">Telegram</span>
+                  <a
+                    href="https://t.me/ASATcoin"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#8CEBFF] hover:underline"
+                  >
+                    @ASATcoin
+                  </a>
+                </div>
+
+                <div className="flex items-center justify-between gap-4">
+                  <span className="text-sm text-[#C9D3DF]">Dexscreener</span>
+                  <a
+                    href="https://dexscreener.com/solana/humyagubqva6hgp9bnqioicegijvrk2xtsumit4gpump"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#8CEBFF] hover:underline"
+                  >
+                    Live market
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              id="official"
+              className="rounded-[28px] border border-white/10 bg-[#081326]/88 p-6 backdrop-blur-sm"
+            >
+              <div className="text-xs uppercase tracking-[0.14em] text-[#8FA3BC]">
+                Solana Mainnet Contract
+              </div>
+
+              <div className="mt-4 rounded-2xl border border-white/10 bg-[#060B14] px-4 py-4 font-mono text-sm text-[#DCE7F3]">
+                {ASAT_MINT}
+              </div>
+
+              <div className="mt-4 flex gap-3">
+                <a
+                  href={`https://solscan.io/token/${ASAT_MINT}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 rounded-2xl border border-white/15 px-4 py-3 text-center text-sm font-medium text-[#F4F6F8] transition hover:border-[#11D6FF]/60 hover:bg-white/5"
+                >
+                  View on Solscan
+                </a>
+
+                <button
+                  onClick={() => {
+                    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+                      void navigator.clipboard.writeText(ASAT_MINT);
+                    }
+                  }}
+                  className="rounded-2xl border border-white/15 px-4 py-3 text-sm font-medium text-[#F4F6F8] transition hover:border-[#11D6FF]/60 hover:bg-white/5"
+                >
+                  Copy
+                </button>
+              </div>
+
+              <p className="mt-4 text-xs leading-6 text-[#8FA3BC]">
+                Always verify official links. Check contract before trading.
+              </p>
+>>>>>>> 2c5a882 (fix: registry tier error + homepage updates)
             </div>
           </div>
 
