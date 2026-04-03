@@ -1,35 +1,35 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 export default function WhyThisMatters() {
+  const t = useTranslations('WhyThisMatters');
+
   const reasons = [
     {
-      title: 'Neutral Reserve Layer',
-      description:
-        'ASAT establishes a common reserve unit for autonomous agents, registry identity, and machine-native coordination.',
+      title: t('r1Title'),
+      description: t('r1Body'),
     },
     {
-      title: 'Verifiable Registry State',
-      description:
-        'Registry participation, tier state, and network positioning become legible for operators, partners, and automated clients.',
+      title: t('r2Title'),
+      description: t('r2Body'),
     },
     {
-      title: 'Protocol Alignment',
-      description:
-        'ASAT aligns visibility, future eligibility, and protocol participation around one monetary base unit.',
+      title: t('r3Title'),
+      description: t('r3Body'),
     },
     {
-      title: 'Early Positioning',
-      description:
-        'Coordination standards harden around the units that gain adoption early. Registry position matters before the work layer scales.',
+      title: t('r4Title'),
+      description: t('r4Body'),
     },
   ];
 
   return (
     <section className="border-y border-white/10 bg-[#081326] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-3 protocol-kicker">Strategic Importance / Registry Thesis</div>
+        <div className="mb-3 protocol-kicker">{t('kicker')}</div>
         <h2 className="text-center text-4xl font-semibold tracking-[-0.04em] text-[#F4F6F8] sm:text-6xl">
-          Why This Matters
+          {t('title')}
         </h2>
 
         <div className="mt-12 grid gap-0 border-t border-white/10 md:grid-cols-2">

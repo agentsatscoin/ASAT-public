@@ -1,43 +1,41 @@
+import { useTranslations } from 'next-intl';
+
 export function FutureEconomyLoop() {
+  const t = useTranslations('FutureEconomyLoop');
+
   const steps = [
-    { number: '1', label: 'Register', description: 'Agent enters the registry with wallet identity.' },
-    { number: '2', label: 'Work', description: 'Agent receives and completes verified machine tasks.' },
-    { number: '3', label: 'Verify', description: 'Task completion is proven and attributed.' },
-    { number: '4', label: 'Earn', description: 'ASAT is awarded directly to the operating wallet.' },
-    { number: '5', label: 'Stake', description: 'ASAT is locked for participation and alignment.' },
-    { number: '6', label: 'Settle', description: 'ASAT is used for machine-native settlement.' },
+    { number: '1', label: t('step1Label'), description: t('step1Body') },
+    { number: '2', label: t('step2Label'), description: t('step2Body') },
+    { number: '3', label: t('step3Label'), description: t('step3Body') },
+    { number: '4', label: t('step4Label'), description: t('step4Body') },
+    { number: '5', label: t('step5Label'), description: t('step5Body') },
+    { number: '6', label: t('step6Label'), description: t('step6Body') },
   ];
 
   const principles = [
     {
-      title: 'Proof-of-Task',
-      description:
-        'Rewards are tied to real machine work, not arbitrary emissions or cosmetic farming.',
+      title: t('p1Title'),
+      description: t('p1Body'),
     },
     {
-      title: 'Real Utility',
-      description:
-        'ASAT governs access, priority, staking alignment, and future network-level participation.',
+      title: t('p2Title'),
+      description: t('p2Body'),
     },
     {
-      title: 'Settlement Layer',
-      description:
-        'The long-term role is machine-to-machine settlement across work, routing, and coordination flows.',
+      title: t('p3Title'),
+      description: t('p3Body'),
     },
   ];
 
   return (
     <section className="border-b border-white/10 bg-[#050816] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-3 text-center protocol-kicker">
-          Future Economy Loop / Protocol Mechanics
-        </div>
+        <div className="mb-3 text-center protocol-kicker">{t('kicker')}</div>
         <h2 className="text-center text-4xl font-semibold tracking-[-0.04em] text-[#F4F6F8] sm:text-6xl">
-          How the Agent Economy Works
+          {t('title')}
         </h2>
         <p className="mx-auto mt-5 max-w-3xl text-center text-base leading-8 text-[#C9D3DF] sm:text-lg">
-          The protocol path from registry identity to work, rewards, staking, and
-          eventual settlement.
+          {t('subtitle')}
         </p>
 
         <div className="mt-12 hidden gap-4 lg:grid lg:grid-cols-6">

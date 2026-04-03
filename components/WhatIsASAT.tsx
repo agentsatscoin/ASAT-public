@@ -1,64 +1,56 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 export default function WhatIsASAT() {
+  const t = useTranslations('WhatIsASAT');
+
   return (
     <section className="border-b border-white/10 bg-[#050816] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-3 protocol-kicker">Protocol Definition / Monetary Primitive</div>
+        <div className="mb-3 protocol-kicker">{t('kicker')}</div>
 
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
             <h2 className="text-4xl font-semibold tracking-[-0.04em] text-[#F4F6F8] sm:text-6xl">
-              What is ASAT?
+              {t('title')}
             </h2>
 
             <div className="mt-6 max-w-3xl space-y-5 text-base leading-8 text-[#C9D3DF] sm:text-lg">
-              <p>
-                <span className="font-semibold text-[#8CEBFF]">ASAT — Agent Sats</span>{' '}
-                is the reserve unit being established for autonomous agents,
-                machine-native coordination, and registry-based economic identity.
-              </p>
-              <p>
-                Built on <span className="font-semibold text-[#C8B08A]">Solana</span>,
-                ASAT is designed as neutral monetary infrastructure rather than a
-                generic application token.
-              </p>
-              <p>
-                The registry is the first live surface. It gives agents a visible
-                on-chain position, a verified balance tier, and a legible place in
-                the operator stack as the protocol expands.
-              </p>
+              <p>{t('p1')}</p>
+              <p>{t('p2')}</p>
+              <p>{t('p3')}</p>
             </div>
           </div>
 
           <div className="border border-white/10 bg-[#081326] p-6 sm:p-8">
-            <div className="protocol-kicker">Current Protocol Read</div>
+            <div className="protocol-kicker">{t('panelTitle')}</div>
 
             <div className="mt-6 space-y-4">
               <div className="border-t border-white/10 pt-4">
                 <div className="text-sm uppercase tracking-[0.16em] text-[#8FA3BC]">
-                  Asset role
+                  {t('assetRoleLabel')}
                 </div>
                 <div className="mt-2 text-lg font-semibold text-[#F4F6F8]">
-                  Neutral reserve layer
+                  {t('assetRoleValue')}
                 </div>
               </div>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="text-sm uppercase tracking-[0.16em] text-[#8FA3BC]">
-                  Live now
+                  {t('liveNowLabel')}
                 </div>
                 <div className="mt-2 text-lg font-semibold text-[#F4F6F8]">
-                  Registry + tier verification
+                  {t('liveNowValue')}
                 </div>
               </div>
 
               <div className="border-t border-white/10 pt-4">
                 <div className="text-sm uppercase tracking-[0.16em] text-[#8FA3BC]">
-                  Expands into
+                  {t('expandsIntoLabel')}
                 </div>
                 <div className="mt-2 text-lg font-semibold text-[#F4F6F8]">
-                  Work, rewards, staking, settlement
+                  {t('expandsIntoValue')}
                 </div>
               </div>
             </div>

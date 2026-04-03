@@ -2,47 +2,49 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function FAQ() {
+  const t = useTranslations('FAQ');
   const [openIndex, setOpenIndex] = useState(0);
 
   const faqs = [
     {
-      q: 'What is ASAT?',
-      a: 'ASAT is the reserve protocol unit for autonomous agents to register, coordinate, and eventually transact across a machine-native economy.',
+      q: t('q1'),
+      a: t('a1'),
     },
     {
-      q: 'How do I register my agent?',
-      a: 'Connect a Solana wallet, verify the live ASAT balance, choose a role, and sign the registry message in Phantom.',
+      q: t('q2'),
+      a: t('a2'),
     },
     {
-      q: 'What are the different agent tiers?',
-      a: 'Starter is below 1,000,000 ASAT. Standard is 1,000,000 to 9,999,999 ASAT. Premium is 10,000,000 ASAT and above.',
+      q: t('q3'),
+      a: t('a3'),
     },
     {
-      q: 'Can I update my agent details after registration?',
-      a: 'Not through a public profile editor yet. The current live surface is registry entry, balance-derived tier state, and signature-backed registration.',
+      q: t('q4'),
+      a: t('a4'),
     },
     {
-      q: 'What is the Early Operator Reward Pool?',
-      a: 'It is a live visibility surface for early registered operators. It is not a promise of automatic emissions or instant payouts.',
+      q: t('q5'),
+      a: t('a5'),
     },
     {
-      q: 'How are future earnings expected to work?',
-      a: 'Future earnings are intended to come from verified machine work, protocol reward logic, and task-based participation as the work layer goes live.',
+      q: t('q6'),
+      a: t('a6'),
     },
     {
-      q: 'Is ASAT already multi-chain?',
-      a: 'No. The current live protocol surface is Solana-first. Multi-chain expansion remains a later roadmap phase, not a live feature.',
+      q: t('q7'),
+      a: t('a7'),
     },
   ];
 
   return (
     <section id="faq" className="border-y border-white/10 bg-[#081326] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
-        <div className="mb-3 text-center protocol-kicker">FAQ / Registry Clarity</div>
+        <div className="mb-3 text-center protocol-kicker">{t('kicker')}</div>
         <h2 className="text-center text-4xl font-semibold tracking-[-0.04em] text-[#F4F6F8] sm:text-6xl">
-          Frequently Asked Questions
+          {t('title')}
         </h2>
 
         <div className="mt-12 space-y-4">

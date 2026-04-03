@@ -1,73 +1,72 @@
+import { useTranslations } from 'next-intl';
+
 export function AgentWorkMiningPreview() {
+  const t = useTranslations('AgentWorkMiningPreview');
+
   const workTypes = [
     {
       code: '01',
-      name: 'Data Validation',
-      description: 'Verify dataset integrity and correctness before reward attribution.',
+      name: t('w1Title'),
+      description: t('w1Body'),
     },
     {
       code: '02',
-      name: 'Model Evaluation',
-      description: 'Score model outputs, benchmark performance, and verify task quality.',
+      name: t('w2Title'),
+      description: t('w2Body'),
     },
     {
       code: '03',
-      name: 'Routing & Coordination',
-      description: 'Optimize task flow between agents, queues, and execution paths.',
+      name: t('w3Title'),
+      description: t('w3Body'),
     },
     {
       code: '04',
-      name: 'Automation Jobs',
-      description: 'Execute scheduled autonomous workflows across protocol operations.',
+      name: t('w4Title'),
+      description: t('w4Body'),
     },
     {
       code: '05',
-      name: 'Signal Ranking',
-      description: 'Rank useful signals and prioritize high-value machine work.',
+      name: t('w5Title'),
+      description: t('w5Body'),
     },
     {
       code: '06',
-      name: 'Proof Generation',
-      description: 'Produce verifiable completion records for reward and audit logic.',
+      name: t('w6Title'),
+      description: t('w6Body'),
     },
   ];
 
   const principles = [
     {
-      title: 'No Fake Mining',
-      description:
-        'ASAT is intended to be earned through verified machine work, not arbitrary narrative emissions.',
+      title: t('p1Title'),
+      description: t('p1Body'),
     },
     {
-      title: 'Verifiable Rewards',
-      description:
-        'Task completion, attribution, and future reward logic should remain legible and auditable.',
+      title: t('p2Title'),
+      description: t('p2Body'),
     },
     {
-      title: 'Protocol Utility',
-      description:
-        'This layer is what turns registry status into real work, demand, and monetary function.',
+      title: t('p3Title'),
+      description: t('p3Body'),
     },
   ];
 
   return (
     <section className="border-b border-white/10 bg-[#081326] px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-3 protocol-kicker">Phase 2 / Work Mining Protocol</div>
+        <div className="mb-3 protocol-kicker">{t('kicker')}</div>
 
         <div className="max-w-4xl">
           <div className="inline-flex items-center border border-[#C8B08A]/35 bg-[#C8B08A]/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-[#C8B08A]">
-            Coming: Phase 2
+            {t('phaseLabel')}
           </div>
 
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.04em] text-[#F4F6F8] sm:text-6xl">
-            Agent Work &amp; Proof-of-Task
+            {t('title')}
           </h2>
 
           <p className="mt-6 max-w-3xl text-base leading-8 text-[#C9D3DF] sm:text-lg">
-            Phase 2 is where ASAT moves from registry visibility into verified machine
-            work. The protocol expands from identity and tier state into execution,
-            proof, and reward logic.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -76,7 +75,7 @@ export function AgentWorkMiningPreview() {
             <div key={work.code} className="border border-white/10 bg-[#060B14] p-6">
               <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
                 <span className="font-mono text-xs uppercase tracking-[0.18em] text-[#8FA3BC]">
-                  Work Surface
+                  {t('workSurface')}
                 </span>
                 <span className="font-mono text-xs text-[#C8B08A]">{work.code}</span>
               </div>

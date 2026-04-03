@@ -1,7 +1,9 @@
+import { ASAT_CONTRACT } from '@/lib/asatConfig';
 import { AsatLogo } from '@/components/AsatLogo';
+import { useTranslations } from 'next-intl';
 
 const ASAT_MINT =
-  process.env.NEXT_PUBLIC_ASAT_MINT || 'HumYaGUBQva6HgP9BNqioicEGijVRK2xtSUMiT4gpump';
+  ASAT_CONTRACT;
 
 function shortMint(value: string) {
   if (!value) return '—';
@@ -10,6 +12,8 @@ function shortMint(value: string) {
 }
 
 export function Footer() {
+  const t = useTranslations('Footer');
+
   return (
     <footer className="bg-[#07111F]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
@@ -18,17 +22,18 @@ export function Footer() {
             <AsatLogo size="md" className="w-fit" />
 
             <p className="mt-6 max-w-xl text-base leading-8 text-[#C8D2DF]">
-              Neutral reserve unit for autonomous machine work and settlement.
+              {t('tagline')}
             </p>
 
             <p className="mt-4 max-w-2xl text-sm leading-8 text-[#8FA3BC]">
-              Live on Solana. Registry visibility and tier status are derived from verified ASAT
-              balance at registration.
+              {t('subtagline')}
             </p>
           </div>
 
           <div className="min-w-0">
-            <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">Official</div>
+            <div className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">
+              {t('official')}
+            </div>
 
             <div className="mt-4 grid gap-3 text-sm">
               <a
@@ -37,7 +42,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-[#C8D2DF] transition hover:text-white"
               >
-                X / @ASATcoin
+                {t('x')}
               </a>
               <a
                 href="https://t.me/ASATcoin"
@@ -45,7 +50,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-[#C8D2DF] transition hover:text-white"
               >
-                Telegram / @ASATcoin
+                {t('telegram')}
               </a>
               <a
                 href="https://github.com/agentsatscoin/ASAT-public"
@@ -53,7 +58,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-[#C8D2DF] transition hover:text-white"
               >
-                GitHub / ASAT-public
+                {t('github')}
               </a>
               <a
                 href={`https://solscan.io/token/${ASAT_MINT}`}
@@ -61,14 +66,14 @@ export function Footer() {
                 rel="noreferrer"
                 className="text-[#C8D2DF] transition hover:text-white"
               >
-                Contract / {shortMint(ASAT_MINT)}
+                {t('contract')} / {shortMint(ASAT_MINT)}
               </a>
             </div>
           </div>
         </div>
 
         <div className="pt-6 text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">
-          © 2026 Agent Sats · Solana mainnet · Registry active · Protocol surface live
+          {t('copyright')}
         </div>
       </div>
     </footer>
