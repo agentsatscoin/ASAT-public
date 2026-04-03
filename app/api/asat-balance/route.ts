@@ -1,8 +1,7 @@
+import { ASAT_CONTRACT } from '@/lib/asatConfig';
 import { NextResponse } from 'next/server';
 
-const ASAT_MINT =
-  process.env.NEXT_PUBLIC_ASAT_MINT ||
-  'HumYaGUBQva6HgP9BNqioicEGijVRK2xtSUMiT4gpump';
+const ASAT_MINT = ASAT_CONTRACT;
 
 const RPC_URL =
   process.env.SOLANA_RPC_URL ||

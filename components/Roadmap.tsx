@@ -1,47 +1,51 @@
-const phases = [
-  {
-    phase: 'Phase 1',
-    title: 'Agent Registry Launch',
-    note: 'Live identity layer for wallets and operator positioning.',
-    window: 'Live',
-    live: true,
-  },
-  {
-    phase: 'Phase 2',
-    title: 'Work Mining Protocol',
-    note: 'Task accounting, reward logic, and operator state.',
-    window: 'Next',
-    live: false,
-  },
-  {
-    phase: 'Phase 3',
-    title: 'Multi-Chain Integration',
-    note: 'Routing expansion and broader machine settlement surface.',
-    window: 'Later 2026',
-    live: false,
-  },
-  {
-    phase: 'Phase 4',
-    title: 'AI Agent Marketplace',
-    note: 'Agent discovery, coordination, and execution market.',
-    window: 'Future',
-    live: false,
-  },
-];
+import { useTranslations } from 'next-intl';
 
 export default function Roadmap() {
+  const t = useTranslations('Roadmap');
+
+  const phases = [
+    {
+      phase: t('phase1Label'),
+      title: t('phase1Title'),
+      note: t('phase1Note'),
+      window: t('phase1Window'),
+      live: true,
+    },
+    {
+      phase: t('phase2Label'),
+      title: t('phase2Title'),
+      note: t('phase2Note'),
+      window: t('phase2Window'),
+      live: false,
+    },
+    {
+      phase: t('phase3Label'),
+      title: t('phase3Title'),
+      note: t('phase3Note'),
+      window: t('phase3Window'),
+      live: false,
+    },
+    {
+      phase: t('phase4Label'),
+      title: t('phase4Title'),
+      note: t('phase4Note'),
+      window: t('phase4Window'),
+      live: false,
+    },
+  ];
+
   return (
     <section id="roadmap" className="border-b border-white/10 bg-[#07111F]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="max-w-3xl">
           <div className="text-[11px] uppercase tracking-[0.28em] text-[#8FA3BC]">
-            Protocol Roadmap / 2026+
+            {t('kicker')}
           </div>
           <h2 className="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl">
-            Roadmap
+            {t('title')}
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-[#C8D2DF] sm:text-lg">
-            A cleaner progression from identity to machine-native work and settlement.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -77,7 +81,7 @@ export default function Roadmap() {
                   className={`h-2.5 w-2.5 ${item.live ? 'bg-emerald-300' : 'bg-[#6C84B4]'}`}
                 />
                 <span className="text-[11px] uppercase tracking-[0.24em] text-[#8FA3BC]">
-                  {item.live ? 'Active now' : 'Planned'}
+                  {item.live ? t('activeNow') : t('planned')}
                 </span>
               </div>
             </article>

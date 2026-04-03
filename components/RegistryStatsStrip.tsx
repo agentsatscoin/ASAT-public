@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLocale, useTranslations } from 'next-intl';
 
 type Stats = {
   total: number;
@@ -49,24 +50,33 @@ async function safeJson<T = any>(response: Response): Promise<T | null> {
   }
 }
 
-function formatLastRegistration(value: string | null | undefined): string {
+function formatLastRegistration(value: string | null | undefined, locale: string): string {
   if (!value) return '—';
+
   const ts = new Date(value).getTime();
   if (Number.isNaN(ts)) return '—';
 
   const diffMs = Date.now() - ts;
   const diffMin = Math.max(1, Math.floor(diffMs / 60000));
+  const rtf = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
 
-  if (diffMin < 60) return `${diffMin}m ago`;
+  if (diffMin < 60) {
+    return rtf.format(-diffMin, 'minute');
+  }
 
   const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return `${diffHr}h ago`;
+  if (diffHr < 24) {
+    return rtf.format(-diffHr, 'hour');
+  }
 
   const diffDay = Math.floor(diffHr / 24);
-  return `${diffDay}d ago`;
+  return rtf.format(-diffDay, 'day');
 }
 
 export function RegistryStatsStrip() {
+  const t = useTranslations('RegistryStatsStrip');
+  const tierT = useTranslations('AsatAgentRegistry.tier');
+  const locale = useLocale();
   const [stats, setStats] = useState<Stats>(EMPTY_STATS);
 
   useEffect(() => {
@@ -92,11 +102,11 @@ export function RegistryStatsStrip() {
   }, []);
 
   const items = [
-    { label: 'Registered Agents', value: String(stats.total) },
-    { label: 'Starter', value: String(stats.byTier.starter) },
-    { label: 'Standard', value: String(stats.byTier.standard) },
-    { label: 'Premium', value: String(stats.byTier.premium) },
-    { label: 'Last Registration', value: formatLastRegistration(stats.lastRegistration) },
+    { label: t('registeredAgents'), value: String(stats.total) },
+    { label: tierT('starter'), value: String(stats.byTier.starter) },
+    { label: tierT('standard'), value: String(stats.byTier.standard) },
+    { label: tierT('premium'), value: String(stats.byTier.premium) },
+    { label: t('lastRegistration'), value: formatLastRegistration(stats.lastRegistration, locale) },
   ];
 
   return (
