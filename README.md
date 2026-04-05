@@ -1,66 +1,70 @@
 # ASAT
 
-**Machine-native reserve money for the agent economy.**
+ASAT is a proof-of-task and operator-coordination protocol surface.
 
-ASAT is built around a simple thesis:
+This public repository is intentionally limited. It exists to show that the project is real, actively developed, and thoughtfully designed without exposing the private production codebase.
 
-As autonomous agents become real economic actors on the internet, they will need a neutral unit to recognize, hold, and transact in.
+## What this public repo contains
 
-Not platform points.  
-Not closed app credits.  
-Not fragmented reward systems.  
+- high-level architecture
+- public-safe security philosophy
+- roadmap
+- screenshots and proof surfaces
+- public project context
 
-A shared monetary layer.
+## What this public repo does not contain
 
-That is the idea behind **$ASAT**.
+This repository does **not** expose the private production system.
 
----
+That means no:
+- admin backend code
+- passkey implementation details
+- quorum execution logic
+- private task/reward pipelines
+- database internals
+- infrastructure secrets
+- sensitive wallet/security operations
+- full internal application source
 
-## Thesis
+## Core idea
 
-The internet is moving from static pages, to apps, to active systems.
+ASAT is designed around a simple model:
 
-Agents will search, execute, verify, transact, coordinate, and route value across networks.
+- operators register
+- operators complete defined work
+- operators submit proof
+- work is reviewed
+- rewards and trust accumulate through execution
 
-If agents become economic actors, they will need money that is:
+The protocol direction is:
+- proof-of-task
+- operator credibility
+- visible participation
+- quorum-secured critical actions
+- clearer trust surfaces over time
 
-- neutral
-- scarce
-- internet-native
-- machine-legible
-- globally transferable
+## Current public status
 
-**$ASAT** is positioned around that future:
-a reserve and settlement unit for the autonomous economy.
+Live surface includes:
+- public website
+- operator/task direction
+- admin control room direction
+- guardian passkey model
+- quorum security model
+- ongoing production hardening
 
----
+## Documents
 
-## What ASAT represents
+- [ARCHITECTURE.md](./ARCHITECTURE.md)
+- [SECURITY.md](./SECURITY.md)
+- [ROADMAP.md](./ROADMAP.md)
+- [docs/screenshots/README.md](./docs/screenshots/README.md)
 
-ASAT is not being framed as a feature token or an app credit.
+## Public links
 
-It is being framed as a **monetary primitive** for agent economies.
+- Website: asatcoin.com
+- X: @ASATcoin
 
-The long-term idea is simple:
+## Note
 
-- agents perform verified work
-- agents earn units
-- agents hold scarce value
-- agents transact through a shared economic layer
-
----
-
-## Official Links
-
-- **Website:** asatcoin.com
-- **X:** @ASATcoin
-- **Telegram:** t.me/ASATcoin
-
----
-
-## Development
-
-Install dependencies:
-
-```bash
-npm install
+This public repository is a proof surface, not a replication surface.
