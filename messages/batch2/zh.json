@@ -1,0 +1,207 @@
+{
+  "AsatAgentRegistry": {
+    "tier": {
+      "starter": "初级",
+      "standard": "标准",
+      "premium": "高级",
+      "unverified": "未验证"
+    },
+    "role": {
+      "operator": "操作员",
+      "validator": "验证员",
+      "router": "路由员",
+      "scout": "侦察员"
+    },
+    "rewardStatus": {
+      "pending": "待处理",
+      "rewarded": "已奖励"
+    },
+    "roleOptions": {
+      "operator": {
+        "label": "操作员",
+        "description": "执行任务并协调工作"
+      },
+      "validator": {
+        "label": "验证员",
+        "description": "验证证明和结果"
+      },
+      "router": {
+        "label": "路由员",
+        "description": "在系统之间路由流程"
+      },
+      "scout": {
+        "label": "侦察员",
+        "description": "发现并输出机会"
+      }
+    },
+    "statusCards": {
+      "pooledAssets": "汇总资产",
+      "registeredAgents": "已注册代理",
+      "registeredAsat": "已注册 ASAT",
+      "rewardQueue": "奖励队列"
+    },
+    "row": {
+      "wallet": "钱包",
+      "role": "角色",
+      "balance": "余额",
+      "reward": "奖励",
+      "registered": "注册时间"
+    },
+    "intro": {
+      "kicker": "实时注册表 / 链上身份",
+      "title": "实时代理注册表",
+      "body": "注册你的钱包，锁定你的层级，并在 ASAT 操作员注册表中建立你的定位。"
+    },
+    "connect": {
+      "step": "步骤 1",
+      "title": "连接钱包",
+      "body": "连接你的 Solana 钱包以验证 ASAT 余额并开始注册。"
+    },
+    "existing": {
+      "kicker": "钱包状态",
+      "title": "这个钱包已经注册过",
+      "body": "已注册状态会显示在这里，而不是强制重新注册。"
+    },
+    "register": {
+      "step": "步骤 2",
+      "title": "完成注册",
+      "body": "选择一个角色，签署注册消息，并锁定你的定位。"
+    },
+    "fields": {
+      "wallet": "钱包",
+      "verifiedBalance": "已验证余额",
+      "tier": "层级",
+      "role": "角色",
+      "registered": "已注册",
+      "xHandle": "X 账号",
+      "rewardStatus": "奖励状态",
+      "asatBalance": "ASAT 余额",
+      "chooseRole": "选择你的角色",
+      "xHandleOptional": "X 账号（可选）",
+      "xHandlePlaceholder": "@yourhandle",
+      "verifying": "验证中..."
+    },
+    "buttons": {
+      "connectPhantom": "连接 Phantom",
+      "connecting": "连接中...",
+      "refreshBalance": "刷新余额",
+      "refreshing": "刷新中...",
+      "disconnect": "断开连接",
+      "signRegister": "签名并注册",
+      "signingRegistering": "签名 / 注册中..."
+    },
+    "rewardPool": {
+      "title": "早期操作员奖励池",
+      "body": "按 ASAT 余额排序的前 5 个注册条目。",
+      "empty": "暂时还没有 reward pool 行。"
+    },
+    "latestEntries": {
+      "title": "最新注册条目",
+      "body": "来自实时注册表的最新 5 条已签名条目。",
+      "empty": "暂时还没有注册条目。"
+    },
+    "footerNote": "合约已在 Solana 主网上验证。注册层级基于注册时经过验证的 ASAT 余额。",
+    "toast": {
+      "confirmed": "注册条目已确认"
+    },
+    "errors": {
+      "balanceLookupFailed": "钱包已连接，但 ASAT 余额查询失败。",
+      "phantomMissing": "未检测到 Phantom。请安装 Phantom 后再试。",
+      "noWalletAddress": "Phantom 已连接，但没有返回钱包地址。",
+      "walletRejected": "钱包连接在 Phantom 中被拒绝。",
+      "phantomWindowOpen": "Phantom 授权窗口已经打开。请先批准或关闭它。",
+      "connectFailed": "钱包连接失败。",
+      "selectRoleAndWallet": "请先连接钱包并选择角色。",
+      "balanceVerifyUnavailable": "钱包已连接，但暂时还无法验证 ASAT 余额。",
+      "alreadyRegistered": "这个钱包已经注册过。",
+      "registrationFailed": "注册失败。",
+      "signatureRejected": "签名请求在 Phantom 中被拒绝。",
+      "phantomSignatureWindowOpen": "Phantom 签名窗口已经打开。请先批准或关闭它。"
+    }
+  },
+  "LiveTasksPage": {
+    "eyebrow": "Proof-of-Task 已上线",
+    "boardLabel": "ASAT 操作员面板",
+    "title": "认领数字任务。提交证明。赚取 ASAT。",
+    "subtitle": "这是 Proof-of-Task 网络的真实启动界面。操作员认领工作、完成任务、提交可验证证明，并进入奖励审核流程。",
+    "fields": {
+      "walletAddress": "钱包地址",
+      "xHandleOptional": "X 账号（可选）",
+      "proofText": "证明文本",
+      "proofUrlOptional": "证明链接（可选）",
+      "claimedAt": "认领时间",
+      "submittedAt": "提交时间",
+      "reviewedAt": "审核时间",
+      "reviewer": "审核人",
+      "reviewerNote": "审核备注",
+      "rewardTxRef": "奖励 TX 引用",
+      "status": "状态",
+      "created": "创建时间",
+      "paid": "支付时间",
+      "txRef": "TX 引用"
+    },
+    "placeholders": {
+      "wallet": "粘贴你的 Solana 钱包",
+      "xHandle": "@yourhandle",
+      "proofText": "粘贴证明细节、链接、备注、交付内容或摘要",
+      "proofUrl": "https://..."
+    },
+    "buttons": {
+      "refreshBoard": "刷新面板",
+      "goToClaimed": "前往我已认领的任务",
+      "claimTask": "认领任务",
+      "claiming": "认领中...",
+      "submitProof": "提交证明",
+      "submitting": "提交中..."
+    },
+    "tabs": {
+      "open": "开放任务",
+      "claimed": "我已认领的任务",
+      "rewards": "我的奖励"
+    },
+    "stats": {
+      "openTasks": "开放任务",
+      "submittedForReview": "待审核",
+      "rewardedTasks": "已奖励任务",
+      "asatDistributed": "已分发 ASAT"
+    },
+    "messages": {
+      "failedLoad": "任务面板加载失败。",
+      "enterWallet": "在认领任务之前请输入你的钱包地址。",
+      "couldNotClaim": "无法认领任务。",
+      "claimed": "任务已认领。现在请完成工作并提交证明。",
+      "couldNotSubmit": "无法提交证明。",
+      "submitted": "证明已提交。管理员审核队列已更新。",
+      "loading": "正在加载 Proof-of-Task 面板..."
+    },
+    "empty": {
+      "open": "当前没有开放任务。",
+      "claimed": "这个钱包还没有认领任务。",
+      "rewards": "这个钱包还没有奖励记录。"
+    },
+    "sourceLabel": {
+      "platformTask": "平台任务"
+    },
+    "role": {
+      "content": "内容",
+      "research": "研究",
+      "outreach": "外联",
+      "growth_scout": "增长侦察员",
+      "validator": "验证员",
+      "operator": "操作员",
+      "router": "路由员",
+      "scout": "侦察员"
+    },
+    "status": {
+      "open": "开放",
+      "claimed": "已认领",
+      "submitted": "已提交",
+      "approved": "已批准",
+      "rejected": "已拒绝",
+      "rewarded": "已奖励",
+      "pending": "待处理",
+      "paid": "已支付"
+    },
+    "rewardRecord": "奖励记录"
+  }
+}

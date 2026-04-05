@@ -1,0 +1,207 @@
+{
+  "AsatAgentRegistry": {
+    "tier": {
+      "starter": "مبتدئ",
+      "standard": "قياسي",
+      "premium": "متميز",
+      "unverified": "غير موثّق"
+    },
+    "role": {
+      "operator": "مشغّل",
+      "validator": "مدقّق",
+      "router": "موجّه",
+      "scout": "كشّاف"
+    },
+    "rewardStatus": {
+      "pending": "قيد الانتظار",
+      "rewarded": "تمت مكافأته"
+    },
+    "roleOptions": {
+      "operator": {
+        "label": "مشغّل",
+        "description": "تنفيذ المهام وتنسيق العمل"
+      },
+      "validator": {
+        "label": "مدقّق",
+        "description": "التحقق من الإثباتات والنتائج"
+      },
+      "router": {
+        "label": "موجّه",
+        "description": "توجيه التدفقات بين الأنظمة"
+      },
+      "scout": {
+        "label": "كشّاف",
+        "description": "اكتشاف الفرص وإظهارها"
+      }
+    },
+    "statusCards": {
+      "pooledAssets": "الأصول المجمّعة",
+      "registeredAgents": "الوكلاء المسجلون",
+      "registeredAsat": "ASAT المسجل",
+      "rewardQueue": "طابور المكافآت"
+    },
+    "row": {
+      "wallet": "المحفظة",
+      "role": "الدور",
+      "balance": "الرصيد",
+      "reward": "المكافأة",
+      "registered": "تاريخ التسجيل"
+    },
+    "intro": {
+      "kicker": "السجل المباشر / الهوية على السلسلة",
+      "title": "سجل الوكلاء المباشر",
+      "body": "سجّل محفظتك، وثبّت مستواك، وأنشئ موقعك داخل سجل مشغلي ASAT."
+    },
+    "connect": {
+      "step": "الخطوة 1",
+      "title": "ربط المحفظة",
+      "body": "اربط محفظة Solana للتحقق من رصيد ASAT وبدء التسجيل."
+    },
+    "existing": {
+      "kicker": "حالة المحفظة",
+      "title": "هذه المحفظة مسجلة بالفعل",
+      "body": "تبقى حالة التسجيل مرئية هنا بدل فرض إعادة التسجيل."
+    },
+    "register": {
+      "step": "الخطوة 2",
+      "title": "إكمال التسجيل",
+      "body": "اختر دورًا، ووقّع رسالة السجل، وثبّت موقعك."
+    },
+    "fields": {
+      "wallet": "المحفظة",
+      "verifiedBalance": "الرصيد الموثّق",
+      "tier": "المستوى",
+      "role": "الدور",
+      "registered": "مسجل",
+      "xHandle": "حساب X",
+      "rewardStatus": "حالة المكافأة",
+      "asatBalance": "رصيد ASAT",
+      "chooseRole": "اختر دورك",
+      "xHandleOptional": "حساب X (اختياري)",
+      "xHandlePlaceholder": "@yourhandle",
+      "verifying": "جارٍ التحقق..."
+    },
+    "buttons": {
+      "connectPhantom": "ربط Phantom",
+      "connecting": "جارٍ الربط...",
+      "refreshBalance": "تحديث الرصيد",
+      "refreshing": "جارٍ التحديث...",
+      "disconnect": "فصل الاتصال",
+      "signRegister": "توقيع والتسجيل",
+      "signingRegistering": "جارٍ التوقيع / التسجيل..."
+    },
+    "rewardPool": {
+      "title": "مجمع مكافآت المشغلين الأوائل",
+      "body": "أفضل 5 إدخالات في السجل حسب رصيد ASAT.",
+      "empty": "لا توجد صفوف في reward pool بعد."
+    },
+    "latestEntries": {
+      "title": "أحدث إدخالات السجل",
+      "body": "آخر 5 إدخالات موقّعة من السجل المباشر.",
+      "empty": "لا توجد إدخالات سجل بعد."
+    },
+    "footerNote": "تم التحقق من العقد على Solana mainnet. ويتم اشتقاق مستوى السجل من رصيد ASAT الموثّق لحظة التسجيل.",
+    "toast": {
+      "confirmed": "تم تأكيد إدخال السجل"
+    },
+    "errors": {
+      "balanceLookupFailed": "تم ربط المحفظة، لكن فشل التحقق من رصيد ASAT.",
+      "phantomMissing": "لم يتم العثور على Phantom. ثبّت Phantom ثم أعد المحاولة.",
+      "noWalletAddress": "تم ربط Phantom، لكن لم يتم إرجاع عنوان محفظة.",
+      "walletRejected": "تم رفض ربط المحفظة داخل Phantom.",
+      "phantomWindowOpen": "نافذة موافقة Phantom مفتوحة بالفعل. وافق عليها أو أغلقها أولًا.",
+      "connectFailed": "فشل ربط المحفظة.",
+      "selectRoleAndWallet": "يرجى ربط محفظة واختيار دور.",
+      "balanceVerifyUnavailable": "تم ربط المحفظة، لكن لم يمكن التحقق من رصيد ASAT بعد.",
+      "alreadyRegistered": "هذه المحفظة مسجلة بالفعل.",
+      "registrationFailed": "فشل التسجيل.",
+      "signatureRejected": "تم رفض طلب التوقيع داخل Phantom.",
+      "phantomSignatureWindowOpen": "نافذة توقيع Phantom مفتوحة بالفعل. وافق عليها أو أغلقها أولًا."
+    }
+  },
+  "LiveTasksPage": {
+    "eyebrow": "Proof-of-Task مباشر الآن",
+    "boardLabel": "لوحة مشغلي ASAT",
+    "title": "طالب بالمهام الرقمية. أرسل الإثبات. اربح ASAT.",
+    "subtitle": "واجهة إطلاق صادقة لشبكة Proof-of-Task. يطالب المشغّلون بالعمل، ينجزونه، يرسلون إثباتًا قابلًا للتحقق، ثم ينتقلون إلى مراجعة المكافأة.",
+    "fields": {
+      "walletAddress": "عنوان المحفظة",
+      "xHandleOptional": "حساب X (اختياري)",
+      "proofText": "نص الإثبات",
+      "proofUrlOptional": "رابط الإثبات (اختياري)",
+      "claimedAt": "تمت المطالبة في",
+      "submittedAt": "تم الإرسال في",
+      "reviewedAt": "تمت المراجعة في",
+      "reviewer": "المراجع",
+      "reviewerNote": "ملاحظة المراجع",
+      "rewardTxRef": "مرجع TX للمكافأة",
+      "status": "الحالة",
+      "created": "تم الإنشاء",
+      "paid": "تم الدفع",
+      "txRef": "مرجع TX"
+    },
+    "placeholders": {
+      "wallet": "ألصق محفظة Solana الخاصة بك",
+      "xHandle": "@yourhandle",
+      "proofText": "ألصق تفاصيل الإثبات أو الروابط أو الملاحظات أو ملخص التسليم",
+      "proofUrl": "https://..."
+    },
+    "buttons": {
+      "refreshBoard": "تحديث اللوحة",
+      "goToClaimed": "الانتقال إلى مهامي المطالب بها",
+      "claimTask": "المطالبة بالمهمة",
+      "claiming": "جارٍ المطالبة...",
+      "submitProof": "إرسال الإثبات",
+      "submitting": "جارٍ الإرسال..."
+    },
+    "tabs": {
+      "open": "المهام المفتوحة",
+      "claimed": "مهامي المطالب بها",
+      "rewards": "مكافآتي"
+    },
+    "stats": {
+      "openTasks": "المهام المفتوحة",
+      "submittedForReview": "قيد المراجعة",
+      "rewardedTasks": "المهام المكافأة",
+      "asatDistributed": "ASAT الموزع"
+    },
+    "messages": {
+      "failedLoad": "فشل تحميل لوحة المهام.",
+      "enterWallet": "أدخل عنوان محفظتك قبل المطالبة بمهمة.",
+      "couldNotClaim": "تعذرت المطالبة بالمهمة.",
+      "claimed": "تمت المطالبة بالمهمة. الآن أكمل العمل وأرسل الإثبات.",
+      "couldNotSubmit": "تعذر إرسال الإثبات.",
+      "submitted": "تم إرسال الإثبات. تم تحديث طابور مراجعة الإدارة.",
+      "loading": "جارٍ تحميل لوحة Proof-of-Task..."
+    },
+    "empty": {
+      "open": "لا توجد مهام مفتوحة الآن.",
+      "claimed": "لا توجد مهام مطالب بها لهذا wallet حتى الآن.",
+      "rewards": "لا توجد سجلات مكافآت لهذا wallet حتى الآن."
+    },
+    "sourceLabel": {
+      "platformTask": "مهمة المنصة"
+    },
+    "role": {
+      "content": "محتوى",
+      "research": "بحث",
+      "outreach": "تواصل",
+      "growth_scout": "كشّاف النمو",
+      "validator": "مدقّق",
+      "operator": "مشغّل",
+      "router": "موجّه",
+      "scout": "كشّاف"
+    },
+    "status": {
+      "open": "مفتوحة",
+      "claimed": "تمت المطالبة",
+      "submitted": "تم الإرسال",
+      "approved": "تمت الموافقة",
+      "rejected": "مرفوضة",
+      "rewarded": "تمت مكافأتها",
+      "pending": "قيد الانتظار",
+      "paid": "مدفوعة"
+    },
+    "rewardRecord": "سجل المكافأة"
+  }
+}

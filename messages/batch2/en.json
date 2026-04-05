@@ -1,0 +1,207 @@
+{
+  "AsatAgentRegistry": {
+    "tier": {
+      "starter": "Starter",
+      "standard": "Standard",
+      "premium": "Premium",
+      "unverified": "Unverified"
+    },
+    "role": {
+      "operator": "Operator",
+      "validator": "Validator",
+      "router": "Router",
+      "scout": "Scout"
+    },
+    "rewardStatus": {
+      "pending": "Pending",
+      "rewarded": "Rewarded"
+    },
+    "roleOptions": {
+      "operator": {
+        "label": "Operator",
+        "description": "Run tasks and coordinate work"
+      },
+      "validator": {
+        "label": "Validator",
+        "description": "Verify proofs and outcomes"
+      },
+      "router": {
+        "label": "Router",
+        "description": "Route flows across systems"
+      },
+      "scout": {
+        "label": "Scout",
+        "description": "Discover and surface opportunities"
+      }
+    },
+    "statusCards": {
+      "pooledAssets": "Pooled Assets",
+      "registeredAgents": "Registered Agents",
+      "registeredAsat": "Registered ASAT",
+      "rewardQueue": "Reward Queue"
+    },
+    "row": {
+      "wallet": "Wallet",
+      "role": "Role",
+      "balance": "Balance",
+      "reward": "Reward",
+      "registered": "Registered"
+    },
+    "intro": {
+      "kicker": "Live registry / on-chain identity",
+      "title": "Live Agent Registry",
+      "body": "Register your wallet, secure your tier, and establish your position in the ASAT operator registry."
+    },
+    "connect": {
+      "step": "Step 1",
+      "title": "Connect Wallet",
+      "body": "Connect your Solana wallet to verify ASAT balance and begin registration."
+    },
+    "existing": {
+      "kicker": "Wallet status",
+      "title": "This wallet is already registered",
+      "body": "Registered state stays visible here instead of forcing a re-register flow."
+    },
+    "register": {
+      "step": "Step 2",
+      "title": "Complete Registration",
+      "body": "Select a role, sign the registry message, and secure your position."
+    },
+    "fields": {
+      "wallet": "Wallet",
+      "verifiedBalance": "Verified Balance",
+      "tier": "Tier",
+      "role": "Role",
+      "registered": "Registered",
+      "xHandle": "X Handle",
+      "rewardStatus": "Reward Status",
+      "asatBalance": "ASAT Balance",
+      "chooseRole": "Choose Your Role",
+      "xHandleOptional": "X Handle (optional)",
+      "xHandlePlaceholder": "@yourhandle",
+      "verifying": "Verifying..."
+    },
+    "buttons": {
+      "connectPhantom": "Connect Phantom",
+      "connecting": "Connecting...",
+      "refreshBalance": "Refresh Balance",
+      "refreshing": "Refreshing...",
+      "disconnect": "Disconnect",
+      "signRegister": "Sign & Register",
+      "signingRegistering": "Signing / Registering..."
+    },
+    "rewardPool": {
+      "title": "Early Operator Reward Pool",
+      "body": "Top 5 registry entries by ASAT balance.",
+      "empty": "No reward-pool rows yet."
+    },
+    "latestEntries": {
+      "title": "Latest Registry Entries",
+      "body": "Latest 5 signed entries from the live registry.",
+      "empty": "No registry entries yet."
+    },
+    "footerNote": "Contract verified on Solana mainnet. Registry tier is derived from live verified ASAT balance at registration.",
+    "toast": {
+      "confirmed": "Registry entry confirmed"
+    },
+    "errors": {
+      "balanceLookupFailed": "Wallet connected, but ASAT balance lookup failed.",
+      "phantomMissing": "Phantom not detected. Install Phantom and try again.",
+      "noWalletAddress": "Phantom connected, but no wallet address was returned.",
+      "walletRejected": "Wallet connection was rejected in Phantom.",
+      "phantomWindowOpen": "Phantom approval window is already open. Approve or close it first.",
+      "connectFailed": "Failed to connect wallet.",
+      "selectRoleAndWallet": "Please connect a wallet and select a role.",
+      "balanceVerifyUnavailable": "Wallet connected, but ASAT balance could not be verified yet.",
+      "alreadyRegistered": "This wallet is already registered.",
+      "registrationFailed": "Registration failed.",
+      "signatureRejected": "Signature request was rejected in Phantom.",
+      "phantomSignatureWindowOpen": "Phantom signature window is already open. Approve or close it first."
+    }
+  },
+  "LiveTasksPage": {
+    "eyebrow": "Proof-of-Task is live",
+    "boardLabel": "ASAT Operator Board",
+    "title": "Claim digital tasks. Submit proof. Earn in ASAT.",
+    "subtitle": "Honest launch surface for the Proof-of-Task network. Operators claim work, complete it, submit verifiable proof, and move into reward review.",
+    "fields": {
+      "walletAddress": "Wallet Address",
+      "xHandleOptional": "X Handle (optional)",
+      "proofText": "Proof Text",
+      "proofUrlOptional": "Proof URL (optional)",
+      "claimedAt": "Claimed at",
+      "submittedAt": "Submitted at",
+      "reviewedAt": "Reviewed at",
+      "reviewer": "Reviewer",
+      "reviewerNote": "Reviewer note",
+      "rewardTxRef": "Reward TX ref",
+      "status": "Status",
+      "created": "Created",
+      "paid": "Paid",
+      "txRef": "TX Ref"
+    },
+    "placeholders": {
+      "wallet": "Paste your Solana wallet",
+      "xHandle": "@yourhandle",
+      "proofText": "Paste proof details, links, notes, output, or delivery summary",
+      "proofUrl": "https://..."
+    },
+    "buttons": {
+      "refreshBoard": "Refresh Board",
+      "goToClaimed": "Go to My Claimed Tasks",
+      "claimTask": "Claim Task",
+      "claiming": "Claiming...",
+      "submitProof": "Submit Proof",
+      "submitting": "Submitting..."
+    },
+    "tabs": {
+      "open": "Open Tasks",
+      "claimed": "My Claimed Tasks",
+      "rewards": "My Rewards"
+    },
+    "stats": {
+      "openTasks": "Open Tasks",
+      "submittedForReview": "Submitted for Review",
+      "rewardedTasks": "Rewarded Tasks",
+      "asatDistributed": "ASAT Distributed"
+    },
+    "messages": {
+      "failedLoad": "Failed to load task board.",
+      "enterWallet": "Enter your wallet address before claiming a task.",
+      "couldNotClaim": "Could not claim task.",
+      "claimed": "Task claimed. Now finish the work and submit proof.",
+      "couldNotSubmit": "Could not submit proof.",
+      "submitted": "Proof submitted. Admin review queue updated.",
+      "loading": "Loading Proof-of-Task board..."
+    },
+    "empty": {
+      "open": "No open tasks right now.",
+      "claimed": "No claimed tasks yet for this wallet.",
+      "rewards": "No reward records yet for this wallet."
+    },
+    "sourceLabel": {
+      "platformTask": "Platform Task"
+    },
+    "role": {
+      "content": "Content",
+      "research": "Research",
+      "outreach": "Outreach",
+      "growth_scout": "Growth Scout",
+      "validator": "Validator",
+      "operator": "Operator",
+      "router": "Router",
+      "scout": "Scout"
+    },
+    "status": {
+      "open": "Open",
+      "claimed": "Claimed",
+      "submitted": "Submitted",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "rewarded": "Rewarded",
+      "pending": "Pending",
+      "paid": "Paid"
+    },
+    "rewardRecord": "Reward Record"
+  }
+}
